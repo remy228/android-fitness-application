@@ -56,7 +56,7 @@ public class Demo extends Activity {
     public static IStepService mService = null;
     public static Intent stepServiceIntent = null;
 
-    private static int sensitivity = 100;
+    private static int sensitivity = 50;
 
     /**
      * {@inheritDoc}
@@ -82,20 +82,7 @@ public class Demo extends Activity {
         String sensStr = String.valueOf(sensitivity);
         int idx = 0;
 
-        if (sensArrayList == null) {
-            String[] sensArray = getResources().getStringArray(R.array.sensitivity);
-            sensArrayList = new ArrayList<String>(Arrays.asList(sensArray));
-        }
-        if (sensArrayList.contains(sensStr)) {
-            idx = sensArrayList.indexOf(sensStr);
-        }
 
-        Spinner sensSpinner = (Spinner) findViewById(R.id.input_sensitivity_spinner);
-        modesAdapter = ArrayAdapter.createFromResource(this, R.array.sensitivity, android.R.layout.simple_spinner_item);
-        modesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        sensSpinner.setOnItemSelectedListener(sensListener);
-        sensSpinner.setAdapter(modesAdapter);
-        sensSpinner.setSelection(idx);
 
         text = (TextView) this.findViewById(R.id.text);
     }
@@ -129,39 +116,13 @@ public class Demo extends Activity {
         unbindStepService();
     }
 
-    private OnItemSelectedListener sensListener = new OnItemSelectedListener() {
 
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-            CharSequence seq = modesAdapter.getItem(arg2);
-            String sensString = String.valueOf(seq);
-            if (sensString != null) {
-                sensitivity = Integer.parseInt(sensString);
-                StepDetector.setSensitivity(sensitivity);
-            }
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public void onNothingSelected(AdapterView<?> arg0) {
-            // Ignore
-        }
-    };
-
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             try {
                 if (mService != null && mService.isRunning()) {
-                    MessageUtilities.confirmUser(Demo.this, "Exit App without stopping pedometer?", yesExitClick, null);
+                    MessageUtilities.confirmUser(Demo.this, "Exit App without stopping workout?", yesExitClick, null);
                 } else {
                     stop();
 
@@ -200,7 +161,7 @@ public class Demo extends Activity {
             if (isChecked && !serviceIsRunning) {
                 start();
             } else if (!isChecked && serviceIsRunning) {
-                MessageUtilities.confirmUser(Demo.this, "Stop the pedometer?", yesStopClick, noStopClick);
+                MessageUtilities.confirmUser(Demo.this, "Stop the workout?", yesStopClick, noStopClick);
             }
         }
     };

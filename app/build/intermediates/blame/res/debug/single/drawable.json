@@ -2,5 +2,9 @@
     {
         "merged": "C:\\Users\\remya\\AndroidStudioProjects\\android-pedometer-master2\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\icon.png",
         "source": "C:\\Users\\remya\\AndroidStudioProjects\\android-pedometer-master2\\app\\src\\main\\res\\drawable\\icon.png"
+    },
+    {
+        "merged": "C:\\Users\\remya\\AndroidStudioProjects\\android-pedometer-master2\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\userprofile.png",
+        "source": "C:\\Users\\remya\\AndroidStudioProjects\\android-pedometer-master2\\app\\src\\main\\res\\drawable\\userprofile.png"
     }
 ]

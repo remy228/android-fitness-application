@@ -15,15 +15,7 @@
 			android:text="@string/default_text"
 			android:textSize="20dip">
 		</TextView>
-		<TextView android:id="@+id/input_sensitivity_text"
-			android:layout_width="fill_parent" android:layout_height="wrap_content" 
-			android:text="@string/sensitivity_text" 
-			android:textSize="20dip">
-		</TextView>
-		<Spinner android:id="@+id/input_sensitivity_spinner"
-			android:layout_width="fill_parent" android:layout_height="wrap_content"
-			android:prompt="@string/sensitivity" android:hint="@string/sensitivity_hint">
-		</Spinner>
+
 	</LinearLayout>
 	<LinearLayout android:id="@+id/buttons"
 	 	android:layout_width="fill_parent" android:layout_height="wrap_content"
@@ -31,7 +23,7 @@
 		android:layout_alignParentBottom="true">
 		<ToggleButton android:id="@+id/StartStopButton"
 			android:layout_width="wrap_content"	android:layout_height="wrap_content" 
-			android:textOn="Stop Pedometer" android:textOff="Start Pedometer"
+			android:textOn="Stop Workout" android:textOff="Start Workout"
 			android:minHeight="64dip" android:minWidth="96dip" 
 			android:layout_gravity="center_vertical">
 		</ToggleButton>
