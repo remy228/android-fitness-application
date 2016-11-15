@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="8b7a9c7c8da55224a23cfeb7ad40fcdc4aa9cc44">
+        <dex dex="C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_fa24b140907869ccb51b58d82f7b1952f83348b6\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="a61855b12866b968a3c502ce3085f1bd09ccbbb9">
+        <dex dex="C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_73f1b2beafa329da8144448d0e0541fd64fefca2\classes.dex" />
+    </item>
+
+</items>
