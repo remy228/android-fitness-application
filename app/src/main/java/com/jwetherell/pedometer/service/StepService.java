@@ -141,7 +141,7 @@ public class StepService extends Service implements StepListener {
         }
 
         // Fall back on the old API.
-        setForeground(true);
+    //    setForeground(true);
         notificatioManager.notify(id, notif);
     }
 
@@ -173,7 +173,7 @@ public class StepService extends Service implements StepListener {
         // Fall back on the old API. Note to cancel BEFORE changing the
         // foreground state, since we could be killed at that point.
         notificatioManager.cancel(id);
-        setForeground(false);
+      //  setForeground(false);
     }
 
     private void initNotification() {

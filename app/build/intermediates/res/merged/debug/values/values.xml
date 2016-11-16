@@ -1,29 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="sensitivity">
-    	<item>0</item>
-        <item>10</item>
-        <item>20</item>
-        <item>30</item>
-        <item>40</item>
-        <item>50</item>
-        <item>60</item>
-        <item>70</item>
-        <item>80</item>
-        <item>90</item>
-        <item>100</item>
-        <item>110</item>
-        <item>120</item>
-        <item>130</item>
-        <item>140</item>
-        <item>150</item>
-        <item>200</item>
-        <item>300</item>
-        <item>400</item>
+    <string-array name="items">
+        <item>Male</item>
+        <item>Female</item>
     </string-array>
-    <string name="app_name">Pedometer</string>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <string name="app_name">AlphaFitness</string>
     <string name="default_text">"Steps = 0"</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="sensitivity">Sensitivity\n(lower = more sensitive)</string>
     <string name="sensitivity_hint">"Sensitivity"</string>
     <string name="sensitivity_text">"Sensitivity:"</string>
+    <string name="spin">Select your Gender </string>
+    <string name="title_activity_user_profile">UserProfile</string>
 </resources>

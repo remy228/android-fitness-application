@@ -10,6 +10,8 @@ import com.jwetherell.pedometer.service.StepService;
 import com.jwetherell.pedometer.utilities.MessageUtilities;
 import com.jwetherell.pedometer.R;
 import android.app.Activity;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -23,6 +25,7 @@ import android.os.Message;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.os.RemoteException;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -56,7 +59,7 @@ public class Demo extends Activity {
     public static IStepService mService = null;
     public static Intent stepServiceIntent = null;
 
-    private static int sensitivity = 50;
+    private static int sensitivity = 30;
 
     /**
      * {@inheritDoc}
@@ -81,10 +84,25 @@ public class Demo extends Activity {
 
         String sensStr = String.valueOf(sensitivity);
         int idx = 0;
-
-
-
         text = (TextView) this.findViewById(R.id.text);
+
+        // Code for implementing Fragments
+        Configuration config = getResources().getConfiguration();
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        if (config.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            LandscapeFragment landscapeFragment = new LandscapeFragment();
+            fragmentTransaction.replace(android.R.id.content, landscapeFragment);
+
+        } else {
+            PortraitFragment portraitFragment = new PortraitFragment();
+            fragmentTransaction.replace(android.R.id.content, portraitFragment);
+
+        }
+        fragmentTransaction.commit();
+        //Ends here
+
     }
 
     /**
@@ -307,4 +325,11 @@ public class Demo extends Activity {
             mService = null;
         }
     };
+
+    public void userProfileview(View view)
+    {
+        Intent intent = new Intent(this,UserProfile.class);
+        Log.i("User Profile: ","Testing activity 2");
+        startActivity(intent);
+    }
 }

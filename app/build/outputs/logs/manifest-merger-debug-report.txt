@@ -1,69 +1,81 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:2:1-35:12
+ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:2:1-48:12
 	package
-		ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:3:7-41
+		ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:3:5-39
 		INJECTED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml
 	android:versionName
-		ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:5:7-32
+		ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:5:5-30
 		INJECTED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml
 	android:versionCode
-		ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:4:7-30
+		ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:4:5-28
 		INJECTED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:2:11-69
 uses-sdk
-ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:7:5-72
+ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:7:5-9:41
 	android:targetSdkVersion
-		ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:7:41-70
+		ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:9:9-38
 		INJECTED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml
 	android:minSdkVersion
-		ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:7:15-40
+		ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:8:9-34
 		INJECTED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml
 uses-permission#android.permission.WAKE_LOCK
-ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:9:5-84
+ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:11:5-68
 	android:name
-		ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:9:22-65
+		ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:11:22-65
 application
-ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:11:5-33:19
+ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:17:5-46:19
 	android:label
-		ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:12:9-41
+		ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:20:9-41
 	android:allowBackup
-		ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:14:9-35
+		ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:18:9-35
 	android:icon
-		ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:11:18-47
+		ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:19:9-38
 	android:theme
-		ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:13:9-56
+		ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:21:9-56
 activity#com.jwetherell.pedometer.activity.Demo
-ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:16:9-25:20
+ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:22:9-31:20
 	android:label
-		ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:17:19-51
+		ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:25:13-45
 	android:configChanges
-		ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:18:19-69
+		ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:24:13-63
 	android:name
-		ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:16:19-48
+		ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:23:13-42
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:20:13-23:29
+ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:26:13-30:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:21:17-69
+ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:27:17-69
 	android:name
-		ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:21:25-66
+		ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:27:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:22:17-77
+ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:29:17-77
 	android:name
-		ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:22:27-74
+		ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:29:27-74
 service#com.jwetherell.pedometer.service.StepService
-ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:27:9-31:19
+ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:33:9-37:54
 	android:enabled
-		ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:28:14-36
+		ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:35:13-35
 	android:process
-		ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:30:18-48
+		ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:37:13-43
 	android:exported
-		ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:29:14-37
+		ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:36:13-36
 	android:name
-		ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:27:18-53
+		ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:34:13-48
+activity#com.jwetherell.pedometer.activity.UserProfile
+ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:39:9-45:20
+	android:label
+		ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:41:13-64
+	android:name
+		ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:40:13-49
+meta-data#android.support.PARENT_ACTIVITY
+ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:42:13-44:74
+	android:value
+		ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:44:17-71
+	android:name
+		ADDED from C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\src\main\AndroidManifest.xml:43:17-63

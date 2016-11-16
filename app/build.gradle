@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 4
+    compileSdkVersion 14
     buildToolsVersion "24.0.2"
 
     defaultConfig {
         applicationId "com.jwetherell.pedometer"
-        minSdkVersion 4
-        targetSdkVersion 23
+        minSdkVersion 14
+        targetSdkVersion 22
     }
 
     buildTypes {
@@ -17,3 +17,6 @@ android {
         }
     }
 }
+
+
+

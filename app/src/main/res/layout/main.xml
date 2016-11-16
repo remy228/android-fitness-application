@@ -8,8 +8,18 @@
 	  	android:layout_alignParentTop="true"
 	  	android:orientation="vertical"
 		android:layout_above="@+id/buttons">
-		<TextView android:id="@+id/text" 
-			android:layout_width="fill_parent" android:layout_height="wrap_content" 
+
+
+		<ImageButton
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:id="@+id/imageButton"
+			android:layout_gravity="right"
+			android:src="@drawable/userprofile"
+			android:onClick="userProfileview"/>
+
+		<TextView android:id="@+id/text"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
 			android:paddingTop="2dip" android:paddingBottom="15dip"
 			android:paddingLeft="2dip" android:paddingRight="2dip"
 			android:text="@string/default_text"
@@ -17,15 +27,32 @@
 		</TextView>
 
 	</LinearLayout>
+
 	<LinearLayout android:id="@+id/buttons"
 	 	android:layout_width="fill_parent" android:layout_height="wrap_content"
 		android:layout_gravity="bottom" android:gravity="center_horizontal"
 		android:layout_alignParentBottom="true">
+
 		<ToggleButton android:id="@+id/StartStopButton"
-			android:layout_width="wrap_content"	android:layout_height="wrap_content" 
+			android:layout_width="wrap_content"	android:layout_height="wrap_content"
 			android:textOn="Stop Workout" android:textOff="Start Workout"
-			android:minHeight="64dip" android:minWidth="96dip" 
+			android:minHeight="64dip" android:minWidth="96dip"
 			android:layout_gravity="center_vertical">
 		</ToggleButton>
+
 	</LinearLayout>
+
+	<fragment
+		android:name="com.jwetherell.pedometer.activity.LandscapeFragment"
+		android:id="@+id/landscape_fragment"
+		android:layout_weight="1"
+		android:layout_width="0dp"
+		android:layout_height="match_parent" />
+
+	<fragment
+		android:name="com.jwetherell.pedometer.activity.PortraitFragment"
+		android:id="@+id/portrait_fragment"
+		android:layout_weight="1"
+		android:layout_width="0dp"
+		android:layout_height="match_parent" />
 </RelativeLayout>

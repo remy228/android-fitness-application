@@ -4,45 +4,30 @@
     api-level="23"
     density="xxhdpi"
     format="7"
-    timestamp="60243932756024"
+    timestamp="94767095358760"
     token="3199266744023997681" >
 
     <task
         name="javac"
-        duration="207" />
+        duration="0" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="45" />
+        duration="0" />
     <task
         name="verifier"
-        duration="11" />
+        duration="0" />
 
     <artifact
-        location="C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_5\classes.dex"
-        type="DEX" />
+        location="C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\build\outputs\apk\app-debug.apk"
+        type="MAIN" />
 
-    <build timestamp="58046576808779" >
+    <build timestamp="94767095358760" >
         <artifact
             location="C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\build\outputs\apk\app-debug.apk"
             type="MAIN" />
-    </build>
-    <build timestamp="59072810998959" >
-        <artifact
-            location="C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_8\classes.dex"
-            type="DEX" />
-    </build>
-    <build timestamp="59373266604913" >
-        <artifact
-            location="C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\build\intermediates\res\resources-debug.ap_"
-            type="RESOURCES" />
-    </build>
-    <build timestamp="60243932756024" >
-        <artifact
-            location="C:\Users\remya\AndroidStudioProjects\android-pedometer-master2\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_5\classes.dex"
-            type="DEX" />
     </build>
 
 </instant-run>
