@@ -59,7 +59,7 @@ public class Demo extends Activity {
     public static IStepService mService = null;
     public static Intent stepServiceIntent = null;
 
-    private static int sensitivity = 30;
+    private static int sensitivity = 50;
 
     /**
      * {@inheritDoc}
