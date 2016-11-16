@@ -23,31 +23,38 @@ public final class R {
     }
     public static final class id {
         public static final int ScrollView01=0x7f070000;
-        public static final int StartStopButton=0x7f070018;
-        public static final int button=0x7f070007;
-        public static final int buttons=0x7f070015;
-        public static final int editText=0x7f070006;
+        public static final int StartStopButton=0x7f070019;
+        public static final int button=0x7f070006;
+        public static final int buttons=0x7f070017;
+        public static final int editText=0x7f070005;
         public static final int editText2=0x7f07000a;
         public static final int imageButton=0x7f070016;
         public static final int imageView=0x7f070002;
-        public static final int landscape_fragment=0x7f070019;
+        public static final int landscape_fragment=0x7f07001a;
         public static final int linearLayout=0x7f070001;
         public static final int linearLayout2=0x7f070003;
-        public static final int portrait_fragment=0x7f07001a;
-        public static final int spinner=0x7f070005;
-        public static final int text=0x7f070017;
+        public static final int portrait_fragment=0x7f07001b;
+        public static final int spinner=0x7f070009;
+        public static final int text=0x7f070018;
         public static final int textView=0x7f070004;
         public static final int textView10=0x7f070010;
         public static final int textView11=0x7f070011;
         public static final int textView12=0x7f070012;
         public static final int textView13=0x7f070013;
         public static final int textView14=0x7f070014;
-        public static final int textView2=0x7f070008;
-        public static final int textView3=0x7f070009;
+        public static final int textView15=0x7f07001c;
+        public static final int textView16=0x7f07001d;
+        public static final int textView17=0x7f07001e;
+        public static final int textView18=0x7f070020;
+        public static final int textView19=0x7f070021;
+        public static final int textView2=0x7f070007;
+        public static final int textView20=0x7f07001f;
+        public static final int textView3=0x7f070008;
         public static final int textView4=0x7f07000b;
         public static final int textView5=0x7f07000c;
         public static final int textView6=0x7f07000d;
         public static final int textView7=0x7f07000e;
+        public static final int textView8=0x7f070015;
         public static final int textView9=0x7f07000f;
     }
     public static final class layout {

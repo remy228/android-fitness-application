@@ -3,12 +3,15 @@
   	xmlns:android="http://schemas.android.com/apk/res/android"
   	android:layout_width="fill_parent" android:layout_height="fill_parent"
   	android:padding="5dp">
-  	<LinearLayout
-		android:layout_width="fill_parent" android:layout_height="wrap_content"
-	  	android:layout_alignParentTop="true"
-	  	android:orientation="vertical"
-		android:layout_above="@+id/buttons">
 
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textAppearance="?android:attr/textAppearanceLarge"
+			android:text="Record Workout"
+			android:layout_marginTop="10dp"
+			android:textSize="30dp"
+			android:id="@+id/textView8" />
 
 		<ImageButton
 			android:layout_width="wrap_content"
@@ -16,17 +19,21 @@
 			android:id="@+id/imageButton"
 			android:layout_gravity="right"
 			android:src="@drawable/userprofile"
-			android:onClick="userProfileview"/>
+			android:onClick="userProfileview"
+			android:layout_alignTop="@+id/textView8"
+			android:layout_alignRight="@+id/buttons"
+			android:layout_marginRight="47dp" />
 
 		<TextView android:id="@+id/text"
-			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:layout_width="137dp" android:layout_height="wrap_content"
 			android:paddingTop="2dip" android:paddingBottom="15dip"
 			android:paddingLeft="2dip" android:paddingRight="2dip"
 			android:text="@string/default_text"
-			android:textSize="20dip">
+			android:textSize="20dip"
+			android:layout_below="@+id/imageButton"
+			android:layout_alignParentLeft="true">
 		</TextView>
 
-	</LinearLayout>
 
 	<LinearLayout android:id="@+id/buttons"
 	 	android:layout_width="fill_parent" android:layout_height="wrap_content"
@@ -55,4 +62,75 @@
 		android:layout_weight="1"
 		android:layout_width="0dp"
 		android:layout_height="match_parent" />
+
+	<TextView
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:textAppearance="?android:attr/textAppearanceMedium"
+	android:text="DISTANCE"
+	android:paddingLeft="50dp"
+	android:id="@+id/textView15"
+	android:layout_below="@+id/text"
+	android:layout_alignParentLeft="true"
+		android:background="@android:color/darker_gray"
+		android:layout_alignRight="@+id/textView8" />
+
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:textAppearance="?android:attr/textAppearanceMedium"
+		android:text="2.5"
+		android:textSize="30dp"
+		android:paddingLeft="70dp"
+		android:id="@+id/textView16"
+		android:layout_below="@+id/textView15"
+		android:layout_alignParentLeft="true" />
+
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:textAppearance="?android:attr/textAppearanceMedium"
+		android:text="KM"
+		android:paddingLeft="75dp"
+		android:id="@+id/textView17"
+		android:layout_toRightOf="@+id/landscape_fragment"
+		android:layout_below="@+id/textView16"
+		android:layout_toLeftOf="@+id/textView20"
+		android:background="@android:color/darker_gray" />
+
+
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:textAppearance="?android:attr/textAppearanceMedium"
+		android:text="DURATION"
+		android:id="@+id/textView18"
+		android:layout_alignTop="@+id/textView15"
+		android:layout_alignBottom="@+id/textView15"
+		android:layout_toRightOf="@+id/textView15"
+		android:background="@android:color/darker_gray"
+		android:layout_alignParentRight="true" />
+
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:textAppearance="?android:attr/textAppearanceMedium"
+		android:text="1:12:13"
+		android:textSize="30dp"
+
+		android:id="@+id/textView19"
+		android:layout_below="@+id/textView18"
+		android:layout_toRightOf="@+id/textView15" />
+
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:textAppearance="?android:attr/textAppearanceMedium"
+		android:text="Hours/Minutes"
+		android:id="@+id/textView20"
+		android:layout_below="@+id/textView19"
+		android:layout_alignLeft="@+id/textView19"
+		android:layout_alignRight="@+id/textView18"
+		android:background="@android:color/darker_gray" />
+
 </RelativeLayout>
