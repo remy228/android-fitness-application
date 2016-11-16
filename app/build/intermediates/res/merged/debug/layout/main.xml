@@ -9,6 +9,7 @@
 			android:layout_height="wrap_content"
 			android:textAppearance="?android:attr/textAppearanceLarge"
 			android:text="Record Workout"
+			android:textColor="@android:color/holo_blue_bright"
 			android:layout_marginTop="10dp"
 			android:textSize="30dp"
 			android:id="@+id/textView8" />
