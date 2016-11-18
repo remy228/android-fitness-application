@@ -36,6 +36,7 @@ import android.widget.TextView;
 import android.widget.ToggleButton;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import com.jwetherell.pedometer.activity.UserProfile;
 
 
 /**
@@ -59,7 +60,9 @@ public class Demo extends Activity {
     public static IStepService mService = null;
     public static Intent stepServiceIntent = null;
 
+    ToggleButton tB;
     private static int sensitivity = 50;
+    static int Steps;
 
     /**
      * {@inheritDoc}
@@ -102,6 +105,25 @@ public class Demo extends Activity {
         }
         fragmentTransaction.commit();
         //Ends here
+
+        //Start Workout button onclick listener
+        tB = (ToggleButton) findViewById(R.id.StartStopButton);
+        tB.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+                if (tB.isChecked()) {
+                    //Button is ON
+                    Log.i("Toggle button test", "Started");
+                } else {    //Button is OFF
+                    Log.i("Toggle button test", "Stopped");
+                    storeData();
+                }
+
+            }
+        });
+
+        //
 
     }
 
@@ -269,6 +291,7 @@ public class Demo extends Activity {
         }
     }
 
+    int current;
     private static final Handler handler = new Handler() {
 
         public void handleMessage(Message msg) {
@@ -285,13 +308,17 @@ public class Demo extends Activity {
         }
 
         @Override
+
         public void stepsChanged(int value) throws RemoteException {
             logger.info("Steps=" + value);
             Message msg = handler.obtainMessage();
             msg.arg1 = value;
             handler.sendMessage(msg);
+
         }
+
     };
+
 
     private static final ServiceConnection mConnection = new ServiceConnection() {
 
@@ -326,10 +353,31 @@ public class Demo extends Activity {
         }
     };
 
-    public void userProfileview(View view)
-    {
-        Intent intent = new Intent(this,UserProfile.class);
-        Log.i("User Profile: ","Testing activity 2");
+    public void userProfileview(View view) {
+        Intent intent = new Intent(this, UserProfile.class);
+        Log.i("User Profile: ", "Testing activity 2");
         startActivity(intent);
     }
+
+    public void storeData() {
+        double Cal_per_km = UserProfile.get_weight * 0.3125;
+        System.out.println("Calories burnt in a kilometer:" + Cal_per_km + "Weight:" + UserProfile.get_weight );
+       if (UserProfile.get_gender == "Female") {
+            double X = Cal_per_km / 1491;
+            double Cal_burnt = Steps * X;
+            System.out.println("Calories burnt:" + Cal_burnt);
+            // 1 step = 1/1491 km
+            int distance = (int) (0.00067 * Steps);
+            System.out.println("Distance covered:" + distance);
+        } else {
+            double X = (int) (Cal_per_km / 1312.4);
+            double Cal_burnt = Steps * X;
+            System.out.println("Calories burnt:" + Cal_burnt);
+            // 1 step = 1/1312.4 km
+            int distance = (int) (0.00076 * Steps);
+            System.out.println("Distance covered:" + distance);
+        }
+    }
+
+
 }
