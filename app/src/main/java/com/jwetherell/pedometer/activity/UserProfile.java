@@ -1,11 +1,13 @@
 package com.jwetherell.pedometer.activity;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.app.Activity;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -38,6 +40,7 @@ public class UserProfile extends Activity {
     String get_name = null;
     static int get_weight;
     static String get_gender;
+    Intent editintent=getIntent();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +67,22 @@ public class UserProfile extends Activity {
         AllCalories = (TextView)findViewById(R.id.textView45);
 
 
+        Toast.makeText(UserProfile.this, "Please Enter/Verify your profile details!", Toast.LENGTH_LONG).show();
+        //Recieving Intent values to set in the edittext
+        editintent = new Intent(UserProfile.this, UserProfile.class);
+        Bundle extras=getIntent().getExtras();
+        if(extras!=null) {
+            String name = extras.getString("Username");
+            Name.setText(name);
+            int weight = extras.getInt("Userweight");
+            Weight.setText(""+weight);
+            String gender = extras.getString("Usergender");
+            ArrayAdapter myAdap = (ArrayAdapter) Gender.getAdapter(); //cast to an ArrayAdapter
+            int spinnerPosition = myAdap.getPosition(gender);
+            Gender.setSelection(spinnerPosition);
+        }
+
+
         Save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
@@ -75,6 +94,11 @@ public class UserProfile extends Activity {
                 System.out.println("Testing weight: "+ get_weight);
                 get_gender = Gender.getSelectedItem().toString();
                 System.out.println("Testing gender: "+ get_gender);
+
+                //Check if UserProfile already exists. If it does not exist, add it to UserProfiles table and
+                // create a new table to input the workout details with name of table as the user's name.
+                myDBHandler = new MyDBHandler(getApplicationContext());
+                sqLiteDatabase = myDBHandler.getReadableDatabase();
 
 
                 //Adding the UserProfile data to the database
@@ -92,11 +116,42 @@ public class UserProfile extends Activity {
                 intent.putExtra("Userweight", get_weight);
                 startActivity(intent);
 
+                isTableExists(get_name,true);
 
             }
         });
 
 
+    }
+
+    //Check if table exists in database
+    public boolean isTableExists(String get_name, boolean openDb) {
+        if(openDb) {
+            if(sqLiteDatabase == null || !sqLiteDatabase.isOpen()) {
+                sqLiteDatabase = myDBHandler.getReadableDatabase();
+            }
+
+            if(!sqLiteDatabase.isReadOnly()) {
+                sqLiteDatabase.close();
+                sqLiteDatabase = myDBHandler.getReadableDatabase();
+            }
+        }
+
+        Cursor cursor = sqLiteDatabase.rawQuery("select DISTINCT tbl_name from sqlite_master where tbl_name = '"+get_name+"'", null);
+        if(cursor!=null) {
+            if(cursor.getCount()>0) {
+                cursor.close();
+                System.out.println("User exists!");
+
+            }
+            else {
+                System.out.println("User does not exist!");
+                myDBHandler = new MyDBHandler(getApplicationContext());
+                sqLiteDatabase = myDBHandler.getWritableDatabase();
+                myDBHandler.createWorkoutTable(get_name,sqLiteDatabase);
+            }
+        }
+        return false;
     }
 
 }

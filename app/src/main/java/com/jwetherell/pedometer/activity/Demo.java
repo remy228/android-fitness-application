@@ -18,6 +18,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.res.Configuration;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
@@ -67,6 +68,9 @@ public class Demo extends Activity {
     String get_gender;
     int get_weight;
     Intent recieveIntent = getIntent();
+
+    MyDBHandler myDBHandler;
+    SQLiteDatabase sqLiteDatabase;
 
     /**
      * {@inheritDoc}
@@ -121,7 +125,7 @@ public class Demo extends Activity {
                     Log.i("Toggle button test", "Started");
                 } else {    //Button is OFF
                     Log.i("Toggle button test", "Stopped");
-                    storeData();
+
                 }
 
             }
@@ -273,6 +277,7 @@ public class Demo extends Activity {
 
         unbindStepService();
         stopStepService();
+        storeData();
     }
 
     private void startStepService() {
@@ -373,8 +378,12 @@ public class Demo extends Activity {
     };
 
     public void userProfileview(View view) {
-        Intent intent = new Intent(this, UserProfile.class);
+        Intent intent = new Intent(Demo.this, UserProfile.class);
         Log.i("User Profile: ", "Testing activity 2");
+        intent.putExtra("Username", get_name);
+        intent.putExtra("Usergender", get_gender);
+        intent.putExtra("Userweight", get_weight);
+        System.out.println("Sending intent values for persisting in userprofile: " + get_name + " " + get_gender + " " + get_weight);
         startActivity(intent);
     }
 
@@ -383,24 +392,30 @@ public class Demo extends Activity {
         float Cal_per_km = (float) (get_weight * 0.3125);
         System.out.println("Calories burnt in a kilometer: " + Cal_per_km + "Weight: " + get_weight );
         System.out.println("Steps: " + Steps);
+        int Cal_burnt;
+        float distance;
        if (get_gender == "Female") {
 
            double X = Cal_per_km / 1491;
            System.out.println("Calories per step:" + Cal_per_km);
-            double Cal_burnt = Steps * X;
+             Cal_burnt= (int) (Steps * X);
             System.out.println("Calories burnt:" + Cal_burnt);
             // 1 step = 1/1491 km
-            double distance =  (0.00067 * Steps);
+            distance = (float) (0.00067 * Steps);
             System.out.println("Distance covered: " + distance);
         } else {
             double X = Cal_per_km / 1312;
             System.out.println("Calories per step:" + Cal_per_km);
-            double Cal_burnt = Steps * X;
+            Cal_burnt = (int) (Steps * X);
             System.out.println("Calories burnt:" + Cal_burnt);
             // 1 step = 1/1312.4 km
-            double distance = (float) (0.00076 * Steps);
+            distance = (float) (0.00076 * Steps);
             System.out.println("Distance covered: " + distance);
         }
+        myDBHandler = new MyDBHandler(getApplicationContext());
+        sqLiteDatabase = myDBHandler.getWritableDatabase();
+        myDBHandler.addWorkoutDetails(get_name,Steps,distance,Cal_burnt, sqLiteDatabase);
+
     }
 
 
