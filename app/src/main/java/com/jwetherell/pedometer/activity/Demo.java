@@ -63,6 +63,10 @@ public class Demo extends Activity {
     ToggleButton tB;
     private static int sensitivity = 50;
     static int Steps;
+    String get_name;
+    String get_gender;
+    int get_weight;
+    Intent recieveIntent = getIntent();
 
     /**
      * {@inheritDoc}
@@ -123,8 +127,20 @@ public class Demo extends Activity {
             }
         });
 
-        //
+        //Intent for recieving the UserProfile data
+        recieveIntent = new Intent(this, UserProfile.class);
+         Bundle extras = getIntent().getExtras();
+        if(extras!=null) {
+            get_name = extras.getString("Username");
+            get_gender = extras.getString("Usergender");
+            get_weight = extras.getInt("Userweight");
+            System.out.println("Intent test: " + get_name + " " + get_gender + " " + get_weight);
 
+        }
+        else
+        {
+            System.out.println("Intent test failed");
+        }
     }
 
     /**
@@ -291,12 +307,13 @@ public class Demo extends Activity {
         }
     }
 
-    int current;
+
     private static final Handler handler = new Handler() {
 
         public void handleMessage(Message msg) {
             int current = msg.arg1;
             text.setText("Steps = " + current);
+
         }
     };
 
@@ -314,6 +331,8 @@ public class Demo extends Activity {
             Message msg = handler.obtainMessage();
             msg.arg1 = value;
             handler.sendMessage(msg);
+            Steps=value;
+
 
         }
 
@@ -360,22 +379,27 @@ public class Demo extends Activity {
     }
 
     public void storeData() {
-        double Cal_per_km = UserProfile.get_weight * 0.3125;
-        System.out.println("Calories burnt in a kilometer:" + Cal_per_km + "Weight:" + UserProfile.get_weight );
-       if (UserProfile.get_gender == "Female") {
-            double X = Cal_per_km / 1491;
+
+        float Cal_per_km = (float) (get_weight * 0.3125);
+        System.out.println("Calories burnt in a kilometer: " + Cal_per_km + "Weight: " + get_weight );
+        System.out.println("Steps: " + Steps);
+       if (get_gender == "Female") {
+
+           double X = Cal_per_km / 1491;
+           System.out.println("Calories per step:" + Cal_per_km);
             double Cal_burnt = Steps * X;
             System.out.println("Calories burnt:" + Cal_burnt);
             // 1 step = 1/1491 km
-            int distance = (int) (0.00067 * Steps);
-            System.out.println("Distance covered:" + distance);
+            double distance =  (0.00067 * Steps);
+            System.out.println("Distance covered: " + distance);
         } else {
-            double X = (int) (Cal_per_km / 1312.4);
+            double X = Cal_per_km / 1312;
+            System.out.println("Calories per step:" + Cal_per_km);
             double Cal_burnt = Steps * X;
             System.out.println("Calories burnt:" + Cal_burnt);
             // 1 step = 1/1312.4 km
-            int distance = (int) (0.00076 * Steps);
-            System.out.println("Distance covered:" + distance);
+            double distance = (float) (0.00076 * Steps);
+            System.out.println("Distance covered: " + distance);
         }
     }
 

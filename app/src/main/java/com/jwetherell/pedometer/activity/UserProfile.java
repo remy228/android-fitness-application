@@ -1,5 +1,6 @@
 package com.jwetherell.pedometer.activity;
 
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.app.Activity;
@@ -82,6 +83,14 @@ public class UserProfile extends Activity {
                 myDBHandler.addUserData(get_name,get_gender,get_weight, sqLiteDatabase);
                 Toast.makeText(v.getContext(), "User Profile Data saved!", Toast.LENGTH_LONG).show();
                 myDBHandler.close();
+
+                //Passing the values to the MainActivity through Intents
+                Intent intent = new Intent(UserProfile.this, Demo.class);
+                Log.i("User Profile: ", "Testing activity 2");
+                intent.putExtra("Username", get_name);
+                intent.putExtra("Usergender", get_gender);
+                intent.putExtra("Userweight", get_weight);
+                startActivity(intent);
 
 
             }
