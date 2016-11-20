@@ -56,7 +56,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
     public void createWorkoutTable(String name,SQLiteDatabase db)
     {
         String TABLE_NAME2 = name;
-        final String CREATE_QUERY2 = "CREATE TABLE "+ TABLE_NAME2 + "(" + COLUMN_ID + " INT, " + COLUMN_STEPS + " INT, " +
+        final String CREATE_QUERY2 = "CREATE TABLE "+ TABLE_NAME2 + "(" + COLUMN_STEPS + " INT, " +
                 COLUMN_DISTANCE + " FLOAT, " + COLUMN_CALORIES + " INT);";
         db.execSQL(CREATE_QUERY2);
         Log.e("DATABASE OPERATIONS:", "Table for workout details has been created");
@@ -67,7 +67,6 @@ public class MyDBHandler extends SQLiteOpenHelper {
     {
         String TABLE_NAME3 = name;
         ContentValues contentValues = new ContentValues();
-        contentValues.put(COLUMN_ID,1);
         contentValues.put(COLUMN_STEPS,steps);
         contentValues.put(COLUMN_DISTANCE,distance);
         contentValues.put(COLUMN_CALORIES,calories);

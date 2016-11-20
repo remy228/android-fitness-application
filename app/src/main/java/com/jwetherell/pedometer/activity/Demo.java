@@ -2,6 +2,9 @@ package com.jwetherell.pedometer.activity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.logging.Logger;
 import com.jwetherell.pedometer.service.IStepService;
 import com.jwetherell.pedometer.service.IStepServiceCallback;
@@ -26,6 +29,7 @@ import android.os.Message;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.os.RemoteException;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -34,6 +38,7 @@ import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.CompoundButton.OnCheckedChangeListener;
@@ -64,13 +69,22 @@ public class Demo extends Activity {
     ToggleButton tB;
     private static int sensitivity = 50;
     static int Steps;
-    String get_name;
-    String get_gender;
-    int get_weight;
+    static String get_name;
+    static String get_gender;
+    static int get_weight;
     Intent recieveIntent = getIntent();
+    static TextView distance;
+    static TextView duration;
+    static int elapsedTime;
+    int hr,min, sec;
+
 
     MyDBHandler myDBHandler;
     SQLiteDatabase sqLiteDatabase;
+    java.util.Date noteTS;
+    String time, date;
+
+
 
     /**
      * {@inheritDoc}
@@ -80,6 +94,8 @@ public class Demo extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
+        distance = (TextView)findViewById(R.id.textView16);
+        duration = (TextView)findViewById(R.id.textView19);
         powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
         wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "Demo");
 
@@ -114,6 +130,45 @@ public class Demo extends Activity {
         fragmentTransaction.commit();
         //Ends here
 
+
+        hr =0;
+        min = 0;
+        sec = 0;
+       final Thread t = new Thread() {
+
+            @Override
+            public void run() {
+                try {
+                    while (!isInterrupted()) {
+                        Thread.sleep(1000);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                updatedistance();
+                                sec+=1;
+                                if (sec>60) {
+                                    min+=1;
+                                    sec=0;
+                                }
+                                if (min>60) {
+                                    hr+=1;
+                                    min=0;
+                                }
+                                duration.setText(hr + ":" + min + ":" + sec);
+
+
+                                // Toast.makeText(Demo.this, "Thread running!", Toast.LENGTH_LONG).show();
+
+                            }
+                        });
+                    }
+                } catch (InterruptedException e) {
+                }
+            }
+        };
+
+
         //Start Workout button onclick listener
         tB = (ToggleButton) findViewById(R.id.StartStopButton);
         tB.setOnClickListener(new View.OnClickListener() {
@@ -121,11 +176,17 @@ public class Demo extends Activity {
             @Override
             public void onClick(View arg0) {
                 if (tB.isChecked()) {
+                    //Update distance textView dynamically
+
+
+
                     //Button is ON
                     Log.i("Toggle button test", "Started");
-                } else {    //Button is OFF
+                 //   startTimer();
+                    t.start();
+                   } else {    //Button is OFF
                     Log.i("Toggle button test", "Stopped");
-
+                    t.interrupt();
                 }
 
             }
@@ -145,7 +206,29 @@ public class Demo extends Activity {
         {
             System.out.println("Intent test failed");
         }
+
+
     }
+
+    // Function to update the distance covered in Realtime
+    private static void updatedistance() {
+        double dist;
+        String a;
+        if (get_gender == "Female") {
+
+            // 1 step = 1/1491 km
+            dist = 0.00067 * Steps;
+            a = String.format("%.2f", dist);
+
+        } else {
+            // 1 step = 1/1312.4 km
+            dist = 0.00076 * Steps;
+            a = String.format("%.2f", dist);
+         }
+
+       distance.setText(String.valueOf(a));
+    }
+
 
     /**
      * {@inheritDoc}
@@ -339,6 +422,7 @@ public class Demo extends Activity {
             Steps=value;
 
 
+
         }
 
     };
@@ -397,7 +481,7 @@ public class Demo extends Activity {
        if (get_gender == "Female") {
 
            double X = Cal_per_km / 1491;
-           System.out.println("Calories per step:" + Cal_per_km);
+           System.out.println("Calories per step:" + X);
              Cal_burnt= (int) (Steps * X);
             System.out.println("Calories burnt:" + Cal_burnt);
             // 1 step = 1/1491 km
@@ -405,7 +489,7 @@ public class Demo extends Activity {
             System.out.println("Distance covered: " + distance);
         } else {
             double X = Cal_per_km / 1312;
-            System.out.println("Calories per step:" + Cal_per_km);
+            System.out.println("Calories per step:" + X);
             Cal_burnt = (int) (Steps * X);
             System.out.println("Calories burnt:" + Cal_burnt);
             // 1 step = 1/1312.4 km
