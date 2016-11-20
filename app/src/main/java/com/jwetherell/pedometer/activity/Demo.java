@@ -1,5 +1,6 @@
 package com.jwetherell.pedometer.activity;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -130,11 +131,10 @@ public class Demo extends Activity {
         fragmentTransaction.commit();
         //Ends here
 
-
-        hr =0;
+        hr= 0;
         min = 0;
         sec = 0;
-       final Thread t = new Thread() {
+        final Thread t = new Thread() {
 
             @Override
             public void run() {
@@ -147,15 +147,18 @@ public class Demo extends Activity {
 
                                 updatedistance();
                                 sec+=1;
-                                if (sec>60) {
+                                if (sec>59) {
                                     min+=1;
                                     sec=0;
                                 }
-                                if (min>60) {
+                                if (min>59) {
                                     hr+=1;
                                     min=0;
                                 }
-                                duration.setText(hr + ":" + min + ":" + sec);
+                              String hr_new =  String.format("%02d", hr);
+                              String min_new = String.format("%02d", min);
+                              String sec_new = String.format("%02d", sec);
+                              duration.setText(hr_new + ":" + min_new + ":" + sec_new);
 
 
                                 // Toast.makeText(Demo.this, "Thread running!", Toast.LENGTH_LONG).show();

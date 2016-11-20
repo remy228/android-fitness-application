@@ -43,11 +43,11 @@ public final class R {
         public static final int textView14=0x7f070013;
         public static final int textView15=0x7f070035;
         public static final int textView16=0x7f070036;
-        public static final int textView17=0x7f070037;
-        public static final int textView18=0x7f070039;
-        public static final int textView19=0x7f07003a;
+        public static final int textView17=0x7f070038;
+        public static final int textView18=0x7f07003a;
+        public static final int textView19=0x7f070037;
         public static final int textView2=0x7f070006;
-        public static final int textView20=0x7f070038;
+        public static final int textView20=0x7f070039;
         public static final int textView21=0x7f070014;
         public static final int textView22=0x7f070015;
         public static final int textView23=0x7f070016;

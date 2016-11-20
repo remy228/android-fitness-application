@@ -80,12 +80,11 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:textAppearance="?android:attr/textAppearanceMedium"
-		android:text="2.5"
+		android:text="0.00"
 		android:textSize="30dp"
-		android:paddingLeft="70dp"
+		android:paddingLeft="60dp"
 		android:id="@+id/textView16"
-		android:layout_below="@+id/textView15"
-		android:layout_alignParentLeft="true" />
+		android:layout_alignTop="@+id/textView19" />
 
 	<TextView
 		android:layout_width="wrap_content"
@@ -105,23 +104,23 @@
 		android:layout_height="wrap_content"
 		android:textAppearance="?android:attr/textAppearanceMedium"
 		android:text="DURATION"
+		android:paddingLeft="15dp"
 		android:id="@+id/textView18"
-		android:layout_alignTop="@+id/textView15"
 		android:layout_alignBottom="@+id/textView15"
-		android:layout_toRightOf="@+id/textView15"
 		android:background="@android:color/darker_gray"
+		android:layout_alignTop="@+id/textView15"
+		android:layout_toRightOf="@+id/textView17"
 		android:layout_alignParentRight="true" />
 
 	<TextView
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:textAppearance="?android:attr/textAppearanceMedium"
-		android:text="1:12:13"
+		android:text="00:00:00"
 		android:textSize="30dp"
-
 		android:id="@+id/textView19"
-		android:layout_below="@+id/textView18"
-		android:layout_toRightOf="@+id/textView15" />
+		android:layout_below="@+id/textView15"
+		android:layout_alignRight="@+id/imageButton" />
 
 	<TextView
 		android:layout_width="wrap_content"
@@ -131,7 +130,7 @@
 		android:id="@+id/textView20"
 		android:layout_below="@+id/textView19"
 		android:layout_alignLeft="@+id/textView19"
-		android:layout_alignRight="@+id/textView18"
-		android:background="@android:color/darker_gray" />
+		android:background="@android:color/darker_gray"
+		android:layout_alignRight="@+id/buttons" />
 
 </RelativeLayout>
