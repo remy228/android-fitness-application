@@ -2,9 +2,16 @@ package com.jwetherell.pedometer.activity;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
+
+import com.jwetherell.pedometer.R;
+import com.jwetherell.pedometer.service.StepService;
 
 /**
  * Created by remya on 11/16/2016.
@@ -19,6 +26,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
     public static final String COLUMN_ID = "Id";
     public static final String COLUMN_STEPS = "Steps_taken";
     public static final String COLUMN_DISTANCE = "Distance_in_km";
+    public static final String COLUMN_DURATION = "Duration_in_secs";
     public static final String COLUMN_CALORIES = "Calories_burnt";
 
 
@@ -57,7 +65,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
     {
         String TABLE_NAME2 = name;
         final String CREATE_QUERY2 = "CREATE TABLE "+ TABLE_NAME2 + "(" + COLUMN_STEPS + " INT, " +
-                COLUMN_DISTANCE + " FLOAT, " + COLUMN_CALORIES + " INT);";
+                COLUMN_DISTANCE + " FLOAT, " + COLUMN_DURATION + " LONG INT, " + COLUMN_CALORIES + " INT);";
         db.execSQL(CREATE_QUERY2);
         Log.e("DATABASE OPERATIONS:", "Table for workout details has been created");
         Log.i("Tag", CREATE_QUERY2);
@@ -68,10 +76,12 @@ public class MyDBHandler extends SQLiteOpenHelper {
         String TABLE_NAME3 = name;
         ContentValues contentValues = new ContentValues();
         contentValues.put(COLUMN_STEPS,steps);
+        contentValues.put(COLUMN_DURATION,345);
         contentValues.put(COLUMN_DISTANCE,distance);
         contentValues.put(COLUMN_CALORIES,calories);
         db.insert(TABLE_NAME3,null,contentValues);
         Log.e("DATABASE OPERATIONS:" , "Workout data has been inserted into the database");
     }
+
 }
 

@@ -76,14 +76,11 @@ public class Demo extends Activity {
     Intent recieveIntent = getIntent();
     static TextView distance;
     static TextView duration;
-    static int elapsedTime;
-    int hr,min, sec;
 
 
     MyDBHandler myDBHandler;
     SQLiteDatabase sqLiteDatabase;
-    java.util.Date noteTS;
-    String time, date;
+
 
 
 
@@ -131,46 +128,6 @@ public class Demo extends Activity {
         fragmentTransaction.commit();
         //Ends here
 
-        hr= 0;
-        min = 0;
-        sec = 0;
-        final Thread t = new Thread() {
-
-            @Override
-            public void run() {
-                try {
-                    while (!isInterrupted()) {
-                        Thread.sleep(1000);
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-
-                                updatedistance();
-                                sec+=1;
-                                if (sec>59) {
-                                    min+=1;
-                                    sec=0;
-                                }
-                                if (min>59) {
-                                    hr+=1;
-                                    min=0;
-                                }
-                              String hr_new =  String.format("%02d", hr);
-                              String min_new = String.format("%02d", min);
-                              String sec_new = String.format("%02d", sec);
-                              duration.setText(hr_new + ":" + min_new + ":" + sec_new);
-
-
-                                // Toast.makeText(Demo.this, "Thread running!", Toast.LENGTH_LONG).show();
-
-                            }
-                        });
-                    }
-                } catch (InterruptedException e) {
-                }
-            }
-        };
-
 
         //Start Workout button onclick listener
         tB = (ToggleButton) findViewById(R.id.StartStopButton);
@@ -189,7 +146,7 @@ public class Demo extends Activity {
                     t.start();
                    } else {    //Button is OFF
                     Log.i("Toggle button test", "Stopped");
-                    t.interrupt();
+
                 }
 
             }
@@ -212,6 +169,47 @@ public class Demo extends Activity {
 
 
     }
+
+    int hr= 0;
+    int min = 0;
+    int sec = 0;
+    final Thread t = new Thread() {
+
+        @Override
+        public void run() {
+            try {
+                while (!isInterrupted()) {
+                    Thread.sleep(1000);
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            updatedistance();
+                            sec+=1;
+                            if (sec>59) {
+                                min+=1;
+                                sec=0;
+                            }
+                            if (min>59) {
+                                hr+=1;
+                                min=0;
+                            }
+                            String hr_new =  String.format("%02d", hr);
+                            String min_new = String.format("%02d", min);
+                            String sec_new = String.format("%02d", sec);
+                            duration.setText(hr_new + ":" + min_new + ":" + sec_new);
+
+
+                            // Toast.makeText(Demo.this, "Thread running!", Toast.LENGTH_LONG).show();
+
+                        }
+                    });
+                }
+            } catch (InterruptedException e) {
+            }
+        }
+    };
+
 
     // Function to update the distance covered in Realtime
     private static void updatedistance() {
@@ -271,7 +269,7 @@ public class Demo extends Activity {
                     MessageUtilities.confirmUser(Demo.this, "Exit App without stopping workout?", yesExitClick, null);
                 } else {
                     stop();
-
+                    t.interrupt();
                     finish();
                 }
             } catch (RemoteException e) {
@@ -319,6 +317,7 @@ public class Demo extends Activity {
          */
         @Override
         public void onClick(DialogInterface dialog, int which) {
+            t.interrupt();
             stop();
         }
     };
@@ -502,6 +501,9 @@ public class Demo extends Activity {
         myDBHandler = new MyDBHandler(getApplicationContext());
         sqLiteDatabase = myDBHandler.getWritableDatabase();
         myDBHandler.addWorkoutDetails(get_name,Steps,distance,Cal_burnt, sqLiteDatabase);
+
+
+          //  UserProfile.updateData(get_name,sqLiteDatabase);
 
     }
 

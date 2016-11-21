@@ -16,31 +16,30 @@ import android.widget.Toast;
 
 import com.jwetherell.pedometer.R;
 
+import java.util.concurrent.TimeUnit;
+
 public class UserProfile extends Activity {
 
-    MyDBHandler myDBHandler;
-    SQLiteDatabase sqLiteDatabase;
+
     EditText Name;
     Spinner Gender;
     EditText Weight;
     Button Save;
     TextView AvgDist;
-    TextView AvgTimeHr;
-    TextView AvgTimeMin;
-    TextView AvgTimeSec;
+    TextView AvgTime;
     TextView AvgWorkouts;
     TextView AvgCalories;
-    TextView AllDist;
-    TextView AllTimeDay;
-    TextView AllTimeHr;
-    TextView AllTimeMin;
-    TextView AllTimeSec;
-    TextView AllWorkouts;
-    TextView AllCalories;
+    static TextView AllDist;
+    static TextView AllTime;
+    static TextView AllWorkouts;
+    static TextView AllCalories;
     String get_name = null;
     static int get_weight;
     static String get_gender;
     Intent editintent=getIntent();
+    MyDBHandler myDBHandler;
+    SQLiteDatabase sqLiteDatabase;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,16 +52,11 @@ public class UserProfile extends Activity {
         Weight = (EditText)findViewById(R.id.editText);
         Save = (Button)findViewById(R.id.button);
         AvgDist = (TextView)findViewById(R.id.textView21);
-        AvgTimeHr = (TextView)findViewById(R.id.textView28);
-        AvgTimeMin = (TextView)findViewById(R.id.textView29);
-        AvgTimeSec = (TextView)findViewById(R.id.textView30);
-        AvgWorkouts = (TextView)findViewById(R.id.textView31);
-        AvgCalories = (TextView)findViewById(R.id.textView32);
-        AllDist = (TextView)findViewById(R.id.textView33);
-        AllTimeDay = (TextView)findViewById(R.id.textView37);
-        AllTimeHr = (TextView)findViewById(R.id.textView42);
-        AllTimeMin = (TextView)findViewById(R.id.textView38);
-        AllTimeSec = (TextView)findViewById(R.id.textView40);
+        AvgTime = (TextView)findViewById(R.id.textView25);
+        AvgWorkouts = (TextView)findViewById(R.id.textView26);
+        AvgCalories = (TextView)findViewById(R.id.textView27);
+        AllDist = (TextView)findViewById(R.id.textView34);
+        AllTime = (TextView)findViewById(R.id.textView40);
         AllWorkouts = (TextView)findViewById(R.id.textView43);
         AllCalories = (TextView)findViewById(R.id.textView45);
 
@@ -80,6 +74,11 @@ public class UserProfile extends Activity {
             ArrayAdapter myAdap = (ArrayAdapter) Gender.getAdapter(); //cast to an ArrayAdapter
             int spinnerPosition = myAdap.getPosition(gender);
             Gender.setSelection(spinnerPosition);
+            if(name!=null) {
+                myDBHandler = new MyDBHandler(getApplicationContext());
+                sqLiteDatabase = myDBHandler.getWritableDatabase();
+                updateData(name, sqLiteDatabase);
+            }
         }
 
 
@@ -122,6 +121,7 @@ public class UserProfile extends Activity {
         });
 
 
+
     }
 
     //Check if table exists in database
@@ -153,5 +153,55 @@ public class UserProfile extends Activity {
         }
         return false;
     }
+
+    //Update the values in UserProfile
+    public static void updateData(String table_name, SQLiteDatabase db) {
+
+        Cursor cur = db.rawQuery("SELECT SUM(Distance_in_km) FROM " + table_name, null);
+        if (cur.moveToFirst()) {
+            System.out.println("Total Distance as retrieved:" + cur.getDouble(0));
+        }
+        Log.e("DATABASE OPERATIONS:", "Retrieving data from the database");
+
+
+        Cursor cur1 = db.rawQuery("SELECT SUM(Duration_in_secs) FROM " + table_name, null);
+        if (cur1.moveToFirst()) {
+            System.out.println("Total Duration as retrieved:" + cur1.getLong(0));
+        }
+        Log.e("DATABASE OPERATIONS:", "Retrieving data from the database");
+
+
+        Cursor cur2 = db.rawQuery("SELECT COUNT(Duration_in_secs) FROM " + table_name, null);
+        if (cur2.moveToFirst()) {
+            System.out.println("Total no of workouts as retrieved:" + cur2.getInt(0));
+        }
+        Log.e("DATABASE OPERATIONS:", "Retrieving data from the database");
+
+        Cursor cur3 = db.rawQuery("SELECT SUM(Calories_burnt) FROM " + table_name, null);
+        if (cur3.moveToFirst()) {
+            System.out.println("Total calories burnt:" + cur3.getInt(0));
+        }
+        Log.e("DATABASE OPERATIONS:", "Retrieving data from the database");
+
+        String dist = String.format("%.2f",cur.getDouble(0));
+        int worktime = cur2.getInt(0);
+        int cal = cur3.getInt(0);
+
+        //Convert time to days,hours,mins,seconds
+        int day = (int) TimeUnit.SECONDS.toDays(cur1.getLong(0));
+        long hours = TimeUnit.SECONDS.toHours(cur1.getLong(0)) -
+                TimeUnit.DAYS.toHours(day);
+        long minute = TimeUnit.SECONDS.toMinutes(cur1.getLong(0)) -
+                TimeUnit.HOURS.toMinutes(TimeUnit.SECONDS.toHours(cur1.getLong(0)));
+        long second = TimeUnit.SECONDS.toSeconds(cur1.getLong(0)) -
+                TimeUnit.MINUTES.toSeconds(TimeUnit.SECONDS.toMinutes(cur1.getLong(0)));
+
+        AllDist.setText(dist + " km");
+        AllTime.setText(day + " day " + hours + " hour " + minute + " min " + second + " sec");
+        AllWorkouts.setText(worktime + " times");
+        AllCalories.setText(cal + " Cal");
+
+    }
+
 
 }
