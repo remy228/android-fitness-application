@@ -46,6 +46,7 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import com.jwetherell.pedometer.activity.UserProfile;
 
 
+
 /**
  * This class extends Activity to handle starting and stopping the pedometer
  * service and displaying the steps.
@@ -118,7 +119,7 @@ public class Demo extends Activity {
 
         if (config.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             LandscapeFragment landscapeFragment = new LandscapeFragment();
-            fragmentTransaction.replace(android.R.id.content, landscapeFragment);
+           fragmentTransaction.replace(android.R.id.content, landscapeFragment);
 
         } else {
             PortraitFragment portraitFragment = new PortraitFragment();

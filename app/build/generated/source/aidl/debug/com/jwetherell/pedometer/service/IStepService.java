@@ -1,6 +1,6 @@
 /*
  * This file is auto-generated.  DO NOT MODIFY.
- * Original file: C:\\Users\\remya\\AndroidStudioProjects\\android-pedometer-master2\\app\\src\\main\\aidl\\com\\jwetherell\\pedometer\\service\\IStepService.aidl
+ * Original file: C:\\Users\\remya\\AndroidStudioProjects\\android-fitness-application\\app\\src\\main\\aidl\\com\\jwetherell\\pedometer\\service\\IStepService.aidl
  */
 package com.jwetherell.pedometer.service;
 public interface IStepService extends android.os.IInterface

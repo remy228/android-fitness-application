@@ -1,25 +1,137 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    tools:context="com.jwetherell.pedometer.activity.LandscapeFragment">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:weightSum="1">
-    <!-- TODO: Update blank fragment layout -->
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent" android:layout_height="fill_parent"
+    android:padding="5dp"
+    android:background="#FFF3E0"
+    class = "com.jwetherell.pedometer.activity.LandscapeFragment">
 
     <TextView
-        android:layout_width="94dp"
+        android:id="@+id/textView2"
+        android:layout_width="144dp"
+        android:layout_height="157dp"
+        android:gravity="center"
+        android:text="Workout Details"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="36dp"
+        android:layout_marginRight="0dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_alignTop="@+id/textView23"
+        android:layout_alignParentLeft="true"
+        android:layout_alignBottom="@+id/textView24"
+        android:layout_toLeftOf="@+id/textView23" />
+
+
+    <TextView
+        android:layout_width="41dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="AVG"
+        android:id="@+id/textView23"
+        android:textColor="@android:color/holo_blue_dark"
+        android:layout_gravity="center_horizontal"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/textView22" />
+
+    <TextView
+        android:layout_width="57dp"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Workout Details"
-        android:textSize="40dp"
-        android:id="@+id/textView4"
-        android:layout_gravity="center_horizontal|top"
-        android:textColor="@android:color/holo_blue_bright"
-        android:layout_weight="0.90" />
-    </LinearLayout>
+        android:text="0:00"
+        android:id="@+id/textView22"
+        android:textColor="@android:color/black"
+        android:layout_gravity="center_horizontal"
+        android:layout_below="@+id/linearLayout3"
+        android:layout_centerHorizontal="true" />
 
-</FrameLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/textView29"
+        android:layout_toRightOf="@+id/textView32"
+        android:id="@+id/linearLayout3"></LinearLayout>
+
+
+    <TextView
+        android:layout_width="103dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="MAX"
+        android:id="@+id/textView31"
+        android:textColor="@android:color/holo_blue_dark"
+        android:layout_alignTop="@+id/textView23"
+        android:layout_alignLeft="@+id/textView29" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="min/km"
+        android:id="@+id/textView33"
+        android:textColor="@android:color/holo_blue_dark"
+        android:layout_below="@+id/textView32"
+        android:layout_alignLeft="@+id/textView28" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="0:00"
+        android:id="@+id/textView32"
+        android:textColor="@android:color/black"
+        android:layout_below="@+id/textView31"
+        android:layout_alignLeft="@+id/textView28" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="min/km"
+        android:id="@+id/textView30"
+        android:textColor="@android:color/holo_blue_dark"
+        android:layout_below="@+id/textView29"
+        android:layout_toRightOf="@+id/textView22"
+        android:layout_marginLeft="51dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="0:00"
+        android:id="@+id/textView29"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@android:color/black"
+        android:layout_below="@+id/textView31"
+        android:layout_alignLeft="@+id/textView30" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="min/km"
+        android:id="@+id/textView24"
+        android:textColor="@android:color/holo_blue_dark"
+        android:layout_below="@+id/textView22"
+        android:layout_toRightOf="@+id/textView2" />
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/lineChart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignRight="@+id/linearLayout3"
+        android:layout_below="@+id/textView2" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="MIN"
+        android:id="@+id/textView28"
+        android:textColor="@android:color/holo_blue_dark"
+        android:layout_above="@+id/linearLayout3"
+        android:layout_toRightOf="@+id/textView31" />
+</RelativeLayout>
+
+
+
+

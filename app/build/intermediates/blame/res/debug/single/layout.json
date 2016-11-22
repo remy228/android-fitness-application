@@ -1,18 +1,18 @@
 [
     {
-        "merged": "C:\\Users\\remya\\AndroidStudioProjects\\android-pedometer-master2\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_portrait.xml",
-        "source": "C:\\Users\\remya\\AndroidStudioProjects\\android-pedometer-master2\\app\\src\\main\\res\\layout\\fragment_portrait.xml"
+        "merged": "C:\\Users\\remya\\AndroidStudioProjects\\android-fitness-application\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_user_profile.xml",
+        "source": "C:\\Users\\remya\\AndroidStudioProjects\\android-fitness-application\\app\\src\\main\\res\\layout\\activity_user_profile.xml"
     },
     {
-        "merged": "C:\\Users\\remya\\AndroidStudioProjects\\android-pedometer-master2\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_user_profile.xml",
-        "source": "C:\\Users\\remya\\AndroidStudioProjects\\android-pedometer-master2\\app\\src\\main\\res\\layout\\activity_user_profile.xml"
+        "merged": "C:\\Users\\remya\\AndroidStudioProjects\\android-fitness-application\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_portrait.xml",
+        "source": "C:\\Users\\remya\\AndroidStudioProjects\\android-fitness-application\\app\\src\\main\\res\\layout\\fragment_portrait.xml"
     },
     {
-        "merged": "C:\\Users\\remya\\AndroidStudioProjects\\android-pedometer-master2\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_landscape.xml",
-        "source": "C:\\Users\\remya\\AndroidStudioProjects\\android-pedometer-master2\\app\\src\\main\\res\\layout\\fragment_landscape.xml"
+        "merged": "C:\\Users\\remya\\AndroidStudioProjects\\android-fitness-application\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_landscape.xml",
+        "source": "C:\\Users\\remya\\AndroidStudioProjects\\android-fitness-application\\app\\src\\main\\res\\layout\\fragment_landscape.xml"
     },
     {
-        "merged": "C:\\Users\\remya\\AndroidStudioProjects\\android-pedometer-master2\\app\\build\\intermediates\\res\\merged\\debug\\layout\\main.xml",
-        "source": "C:\\Users\\remya\\AndroidStudioProjects\\android-pedometer-master2\\app\\src\\main\\res\\layout\\main.xml"
+        "merged": "C:\\Users\\remya\\AndroidStudioProjects\\android-fitness-application\\app\\build\\intermediates\\res\\merged\\debug\\layout\\main.xml",
+        "source": "C:\\Users\\remya\\AndroidStudioProjects\\android-fitness-application\\app\\src\\main\\res\\layout\\main.xml"
     }
 ]
