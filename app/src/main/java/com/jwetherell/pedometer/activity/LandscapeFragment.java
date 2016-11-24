@@ -1,6 +1,7 @@
 package com.jwetherell.pedometer.activity;
 
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import  android.app.Fragment;
@@ -28,14 +29,15 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 import com.jwetherell.pedometer.R;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class LandscapeFragment extends android.app.Fragment implements
-        OnChartValueSelectedListener {
+public class LandscapeFragment extends android.app.Fragment {
 
-
+ //   Intent recieveIntent = getActivity().getIntent();
 
     private LineChart mChart;
 
@@ -52,14 +54,20 @@ public class LandscapeFragment extends android.app.Fragment implements
         getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         View view = inflater.inflate(R.layout.fragment_landscape, container, false);
-       /* getActivity().setContentView(R.layout.fragment_landscape);*/
         mChart = (LineChart) view.findViewById(R.id.lineChart);
-        mChart.setOnChartValueSelectedListener(this);
+ //       mChart.setOnChartValueSelectedListener(this);
+
+      //  mChart.setDescription();
+        mChart.setNoDataText("No data for now");
 
         // enable description text
-        mChart.getDescription().setEnabled(true);
+       mChart.getDescription().setEnabled(true);
 
         // enable touch gestures
+        mChart.setTouchEnabled(true);
+
+        //enable value highlighting
+        mChart.setHighlightPerDragEnabled(true);
         mChart.setTouchEnabled(true);
 
         // enable scaling and dragging
@@ -103,35 +111,73 @@ public class LandscapeFragment extends android.app.Fragment implements
 
         YAxis rightAxis = mChart.getAxisRight();
         rightAxis.setEnabled(false);
-
+     //  feedMultiple();
         return view;
-    }
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        getActivity().getMenuInflater().inflate(R.menu.realtime, menu);
 
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public void onResume() {
+        super.onResume();
 
-        switch (item.getItemId()) {
-            case R.id.actionAdd: {
+        final Runnable runnable = new Runnable() {
+
+            @Override
+            public void run() {
                 addEntry();
-                break;
+             //   updateSpeed();
             }
-            case R.id.actionClear: {
-                mChart.clearValues();
-                Toast.makeText(getActivity(), "Chart cleared!", Toast.LENGTH_SHORT).show();
-                break;
+        };
+
+
+
+        thread = new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                for (int i = 0; i < 100; i++) {
+
+                    // Don't generate garbage runnables inside the loop.
+                    if (getActivity() == null) {
+                        return;
+                    }
+                    getActivity().runOnUiThread(runnable);
+
+                    try {
+                        Thread.sleep(300);
+                    } catch (InterruptedException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                }
             }
-            case R.id.actionFeedMultiple: {
-                feedMultiple();
-                break;
-            }
+        });
+
+        thread.start();
+    }
+
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        if (thread != null) {
+            thread.interrupt();
         }
-        return true;
+    }
+
+    private void updateSpeed() {
+
+     //   com.jwetherell.pedometer.activity.Demo.storeData();
+        /*recieveIntent = new Intent(getActivity().getApplicationContext(), Demo.class);
+        Bundle extras = getActivity().getIntent().getExtras();
+        if (extras != null) {
+            int steps = extras.getInt("Steps");
+            double distance = extras.getDouble("Distance");
+            int calories = extras.getInt("Calories");
+            System.out.println("Intent test for real time chart: " + steps + " " + distance + " " + calories);
+
+        }*/
     }
 
     private void addEntry() {
@@ -165,6 +211,13 @@ public class LandscapeFragment extends android.app.Fragment implements
             // mChart.moveViewTo(data.getXValCount()-7, 55f,
             // AxisDependency.LEFT);
         }
+
+    }
+
+    //Retrieving data for Calories and Steps every 5 minutes
+    private void getData()
+    {
+
     }
 
     private LineDataSet createSet() {
@@ -184,41 +237,44 @@ public class LandscapeFragment extends android.app.Fragment implements
         return set;
     }
 
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        getActivity().getMenuInflater().inflate(R.menu.realtime, menu);
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+     /*  switch (item.getItemId()) {
+            case R.id.actionAdd: {
+                addEntry();
+                break;
+            }
+            case R.id.actionClear: {
+                mChart.clearValues();
+                Toast.makeText(getActivity(), "Chart cleared!", Toast.LENGTH_SHORT).show();
+                break;
+            }
+            case R.id.actionFeedMultiple: {
+                feedMultiple();
+                break;
+            }
+        }*/
+        return true;
+    }
+
+
     private Thread thread;
 
-    private void feedMultiple() {
+  /* private void feedMultiple() {
 
         if (thread != null)
             thread.interrupt();
 
-        final Runnable runnable = new Runnable() {
 
-            @Override
-            public void run() {
-                addEntry();
-            }
-        };
 
-        thread = new Thread(new Runnable() {
-
-            @Override
-            public void run() {
-                for (int i = 0; i < 1000; i++) {
-
-                    // Don't generate garbage runnables inside the loop.
-                    getActivity().runOnUiThread(runnable);
-
-                    try {
-                        Thread.sleep(25);
-                    } catch (InterruptedException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
-                }
-            }
-        });
-
-        thread.start();
     }
 
     @Override
@@ -231,16 +287,8 @@ public class LandscapeFragment extends android.app.Fragment implements
     @Override
     public void onNothingSelected()  {
         Log.i("Nothing selected", "Nothing selected.");
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-
-        if (thread != null) {
-            thread.interrupt();
-        }
-    }
+        feedMultiple();
+    }*/
 
 
 }

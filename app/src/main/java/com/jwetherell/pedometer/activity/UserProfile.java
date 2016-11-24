@@ -74,11 +74,11 @@ public class UserProfile extends Activity {
             ArrayAdapter myAdap = (ArrayAdapter) Gender.getAdapter(); //cast to an ArrayAdapter
             int spinnerPosition = myAdap.getPosition(gender);
             Gender.setSelection(spinnerPosition);
-            if(name!=null) {
+           /* if(name!=null) {
                 myDBHandler = new MyDBHandler(getApplicationContext());
                 sqLiteDatabase = myDBHandler.getWritableDatabase();
-                updateData(name, sqLiteDatabase);
-            }
+
+            }*/
         }
 
 
@@ -86,40 +86,60 @@ public class UserProfile extends Activity {
             @Override
             public void onClick(View v){
                 // TODO Auto-generated method stub
-
+                int flag1=1;
+                int flag2=1;
                 get_name = Name.getText().toString();
-                Log.i("Testing name: ", get_name);
-                get_weight = Integer.parseInt( Weight.getText().toString() );
+                if(get_name!=null) {
+                    Log.i("Testing name: ", get_name);
+                    flag1 = 1;
+                }
+                else
+                {
+                    Toast.makeText(v.getContext(), "Please enter a name!", Toast.LENGTH_LONG).show();
+                    flag1 = 0;
+                }
+
+               try{
+                    get_weight = Integer.parseInt(Weight.getText().toString());
+                   flag2 = 1;
+                }
+               catch(NumberFormatException e){
+                   Toast.makeText(v.getContext(), "Please enter weight value!", Toast.LENGTH_LONG).show();
+                   flag2 = 0;
+                }
+
                 System.out.println("Testing weight: "+ get_weight);
                 get_gender = Gender.getSelectedItem().toString();
                 System.out.println("Testing gender: "+ get_gender);
 
-                //Check if UserProfile already exists. If it does not exist, add it to UserProfiles table and
-                // create a new table to input the workout details with name of table as the user's name.
-                myDBHandler = new MyDBHandler(getApplicationContext());
-                sqLiteDatabase = myDBHandler.getReadableDatabase();
+                if(flag1==1 && flag2==1) {
 
+                    //Adding the UserProfile data to the database
+                    myDBHandler = new MyDBHandler(getApplicationContext());
+                    sqLiteDatabase = myDBHandler.getWritableDatabase();
+                    myDBHandler.addUserData(get_name, get_gender, get_weight, sqLiteDatabase);
+                    Toast.makeText(v.getContext(), "User Profile Data saved!", Toast.LENGTH_LONG).show();
+                    myDBHandler.close();
 
-                //Adding the UserProfile data to the database
-                myDBHandler = new MyDBHandler(getApplicationContext());
-                sqLiteDatabase = myDBHandler.getWritableDatabase();
-                myDBHandler.addUserData(get_name,get_gender,get_weight, sqLiteDatabase);
-                Toast.makeText(v.getContext(), "User Profile Data saved!", Toast.LENGTH_LONG).show();
-                myDBHandler.close();
+                    //Passing the values to the MainActivity through Intents
+                    Intent intent = new Intent(UserProfile.this, Demo.class);
+                    Log.i("User Profile: ", "Testing activity 2");
+                    intent.putExtra("Username", get_name);
+                    intent.putExtra("Usergender", get_gender);
+                    intent.putExtra("Userweight", get_weight);
+                    startActivity(intent);
 
-                //Passing the values to the MainActivity through Intents
-                Intent intent = new Intent(UserProfile.this, Demo.class);
-                Log.i("User Profile: ", "Testing activity 2");
-                intent.putExtra("Username", get_name);
-                intent.putExtra("Usergender", get_gender);
-                intent.putExtra("Userweight", get_weight);
-                startActivity(intent);
-
-                isTableExists(get_name,true);
+                    isTableExists(get_name, true);
+                    updateData(get_name, sqLiteDatabase);
+                }
 
             }
         });
 
+        //Check if UserProfile already exists. If it does not exist, add it to UserProfiles table and
+        // create a new table to input the workout details with name of table as the user's name.
+        myDBHandler = new MyDBHandler(getApplicationContext());
+        sqLiteDatabase = myDBHandler.getReadableDatabase();
 
 
     }

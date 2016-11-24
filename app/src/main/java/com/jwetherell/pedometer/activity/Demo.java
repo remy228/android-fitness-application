@@ -474,13 +474,14 @@ public class Demo extends Activity {
         startActivity(intent);
     }
 
+    int Cal_burnt;
+    float distance_covered;
     public void storeData() {
 
         float Cal_per_km = (float) (get_weight * 0.3125);
         System.out.println("Calories burnt in a kilometer: " + Cal_per_km + "Weight: " + get_weight );
         System.out.println("Steps: " + Steps);
-        int Cal_burnt;
-        float distance;
+
        if (get_gender == "Female") {
 
            double X = Cal_per_km / 1491;
@@ -488,7 +489,7 @@ public class Demo extends Activity {
              Cal_burnt= (int) (Steps * X);
             System.out.println("Calories burnt:" + Cal_burnt);
             // 1 step = 1/1491 km
-            distance = (float) (0.00067 * Steps);
+            distance_covered = (float) (0.00067 * Steps);
             System.out.println("Distance covered: " + distance);
         } else {
             double X = Cal_per_km / 1312;
@@ -496,17 +497,20 @@ public class Demo extends Activity {
             Cal_burnt = (int) (Steps * X);
             System.out.println("Calories burnt:" + Cal_burnt);
             // 1 step = 1/1312.4 km
-            distance = (float) (0.00076 * Steps);
+            distance_covered = (float) (0.00076 * Steps);
             System.out.println("Distance covered: " + distance);
         }
         myDBHandler = new MyDBHandler(getApplicationContext());
         sqLiteDatabase = myDBHandler.getWritableDatabase();
-        myDBHandler.addWorkoutDetails(get_name,Steps,distance,Cal_burnt, sqLiteDatabase);
+        myDBHandler.addWorkoutDetails(get_name,Steps,distance_covered,Cal_burnt, sqLiteDatabase);
+        /*Intent chartIntent = new Intent(this, LandscapeFragment.class);
+        Log.i("Chart Data: ", "Testing!");
+        chartIntent.putExtra("Steps", Steps);
+        chartIntent.putExtra("Distance", distance_covered);
+        chartIntent.putExtra("Calories", Cal_burnt);
+        startActivity(chartIntent);*/
 
-
-          //  UserProfile.updateData(get_name,sqLiteDatabase);
 
     }
-
 
 }
