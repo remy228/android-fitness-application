@@ -30,6 +30,9 @@ import android.os.Message;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.os.RemoteException;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -44,6 +47,7 @@ import android.widget.ToggleButton;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import com.jwetherell.pedometer.activity.UserProfile;
+import android.support.v4.app.Fragment;
 
 
 
@@ -53,7 +57,7 @@ import com.jwetherell.pedometer.activity.UserProfile;
  * 
  * @author Justin Wetherell <phishman3579@gmail.com>
  */
-public class Demo extends Activity {
+public class Demo extends Activity{
 
     private static final Logger logger = Logger.getLogger(Demo.class.getSimpleName());
 
@@ -116,6 +120,12 @@ public class Demo extends Activity {
         Configuration config = getResources().getConfiguration();
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        MapsActivity ma = new MapsActivity();
+       /* getSupportFragmentManager().beginTransaction()
+                .replace(R.id.mapLayout, ma)
+                .commit();*/
+        //fragmentTransaction.replace(R.id.mapLayout,ma).commit();
+      //  fragmentTransaction.commit();
 
         if (config.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             LandscapeFragment landscapeFragment = new LandscapeFragment();

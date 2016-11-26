@@ -4,7 +4,7 @@ package com.jwetherell.pedometer.activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import  android.app.Fragment;
+import android.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;

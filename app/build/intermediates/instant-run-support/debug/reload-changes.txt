@@ -1,2 +1,0 @@
-CHANGED,C:\Users\remya\AndroidStudioProjects\android-fitness-application\app\build\intermediates\transforms\instantRun\debug\folders\4000\5\enhanced\com\jwetherell\pedometer\activity\LandscapeFragment$override.class
-CHANGED,C:\Users\remya\AndroidStudioProjects\android-fitness-application\app\build\intermediates\transforms\instantRun\debug\folders\4000\5\enhanced\com\android\tools\fd\runtime\AppPatchesLoaderImpl.class

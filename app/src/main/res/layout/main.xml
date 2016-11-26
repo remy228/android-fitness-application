@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-  	xmlns:android="http://schemas.android.com/apk/res/android"
-  	android:layout_width="fill_parent" android:layout_height="fill_parent"
-  	android:padding="5dp">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="5dp">
 
 		<TextView
 			android:layout_width="wrap_content"
@@ -132,5 +133,24 @@
 		android:layout_alignLeft="@+id/textView19"
 		android:background="@android:color/darker_gray"
 		android:layout_alignRight="@+id/buttons" />
+
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:id="@+id/mapLayout"
+		android:layout_below="@+id/textView17"
+		android:layout_above="@+id/buttons"
+		android:layout_alignRight="@+id/buttons"
+		android:layout_alignEnd="@+id/buttons">
+
+        <fragment
+            android:id="@+id/map"
+            class="com.google.android.gms.maps.MapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context="com.jwetherell.pedometer.activity.MapsActivity"
+           />
+
+	</RelativeLayout>
 
 </RelativeLayout>

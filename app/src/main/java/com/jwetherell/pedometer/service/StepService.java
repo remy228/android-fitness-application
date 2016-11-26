@@ -187,7 +187,7 @@ public class StepService extends Service implements StepListener {
         notification.number = steps;
         notification.when = System.currentTimeMillis();
         PendingIntent contentIntent = PendingIntent.getActivity(this, 0, passedIntent, 0);
-        notification.setLatestEventInfo(this, getText(R.string.app_name), "Total steps: " + steps, contentIntent);
+      //  notification.setLatestEventInfo(this, getText(R.string.app_name), "Total steps: " + steps, contentIntent);
         notificatioManager.notify(NOTIFY, notification);
 
         updating.set(false);
