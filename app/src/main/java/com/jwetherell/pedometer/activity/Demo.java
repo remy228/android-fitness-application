@@ -579,6 +579,7 @@ public class Demo extends FragmentActivity implements OnMapReadyCallback, Google
             markerOptions.title("Current Position");
             markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
             currLocationMarker = mGoogleMap.addMarker(markerOptions);
+            mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
         }
 
         mLocationRequest = new LocationRequest();

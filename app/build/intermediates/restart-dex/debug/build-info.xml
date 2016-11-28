@@ -4,37 +4,32 @@
     api-level="23"
     density="xxhdpi"
     format="7"
-    timestamp="19801360080640"
+    timestamp="21272393158826"
     token="-868333249239830533" >
 
     <task
         name="javac"
-        duration="422" />
+        duration="378" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="29" />
+        duration="56" />
     <task
         name="verifier"
-        duration="3" />
+        duration="4" />
 
     <artifact
         location="C:\Users\remya\AndroidStudioProjects\android-fitness-application\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_5\classes.dex"
         type="DEX" />
 
-    <build timestamp="13693446611200" >
+    <build timestamp="21184753015040" >
         <artifact
             location="C:\Users\remya\AndroidStudioProjects\android-fitness-application\app\build\outputs\apk\app-debug.apk"
             type="MAIN" />
     </build>
-    <build timestamp="15410158994773" >
-        <artifact
-            location="C:\Users\remya\AndroidStudioProjects\android-fitness-application\app\build\intermediates\res\resources-debug.ap_"
-            type="RESOURCES" />
-    </build>
-    <build timestamp="19801360080640" >
+    <build timestamp="21272393158826" >
         <artifact
             location="C:\Users\remya\AndroidStudioProjects\android-fitness-application\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_5\classes.dex"
             type="DEX" />
