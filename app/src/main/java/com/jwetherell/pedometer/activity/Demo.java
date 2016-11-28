@@ -43,6 +43,8 @@ import android.widget.ToggleButton;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import com.jwetherell.pedometer.activity.UserProfile;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 
 
 /**

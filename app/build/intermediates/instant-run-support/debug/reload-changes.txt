@@ -1,0 +1,9 @@
+CHANGED,C:\Users\remya\AndroidStudioProjects\android-fitness-application\app\build\intermediates\transforms\instantRun\debug\folders\4000\5\enhanced\com\jwetherell\pedometer\R$id$override.class
+CHANGED,C:\Users\remya\AndroidStudioProjects\android-fitness-application\app\build\intermediates\transforms\instantRun\debug\folders\4000\5\enhanced\com\jwetherell\pedometer\R$layout$override.class
+CHANGED,C:\Users\remya\AndroidStudioProjects\android-fitness-application\app\build\intermediates\transforms\instantRun\debug\folders\4000\5\enhanced\com\android\tools\fd\runtime\AppPatchesLoaderImpl.class
+CHANGED,C:\Users\remya\AndroidStudioProjects\android-fitness-application\app\build\intermediates\transforms\instantRun\debug\folders\4000\5\enhanced\com\jwetherell\pedometer\R$styleable$override.class
+CHANGED,C:\Users\remya\AndroidStudioProjects\android-fitness-application\app\build\intermediates\transforms\instantRun\debug\folders\4000\5\enhanced\com\jwetherell\pedometer\R$string$override.class
+CHANGED,C:\Users\remya\AndroidStudioProjects\android-fitness-application\app\build\intermediates\transforms\instantRun\debug\folders\4000\5\enhanced\com\jwetherell\pedometer\R$menu$override.class
+CHANGED,C:\Users\remya\AndroidStudioProjects\android-fitness-application\app\build\intermediates\transforms\instantRun\debug\folders\4000\5\enhanced\com\jwetherell\pedometer\R$integer$override.class
+CHANGED,C:\Users\remya\AndroidStudioProjects\android-fitness-application\app\build\intermediates\transforms\instantRun\debug\folders\4000\5\enhanced\com\jwetherell\pedometer\R$style$override.class
+CHANGED,C:\Users\remya\AndroidStudioProjects\android-fitness-application\app\build\intermediates\transforms\instantRun\debug\folders\4000\5\enhanced\com\jwetherell\pedometer\R$raw$override.class

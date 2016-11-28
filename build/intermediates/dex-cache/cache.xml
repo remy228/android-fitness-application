@@ -2,25 +2,11 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\remya\.gradle\caches\modules-2\files-2.1\com.github.PhilJay\MPAndroidChart\v3.0.1\369f9aa48a629b4e92557b37326f42dc3de796e4\MPAndroidChart-v3.0.1.jar"
-        jumboMode="true"
-        revision="24.0.2"
-        sha1="369f9aa48a629b4e92557b37326f42dc3de796e4">
-        <dex dex="C:\Users\remya\AndroidStudioProjects\android-fitness-application\app\build\intermediates\transforms\dex\debug\folders\1000\10\MPAndroidChart-v3.0.1_b39e5ba896b3a60fc92db689b0a51af06b1e9acc\classes.dex" />
-    </item>
-    <item
         jar="C:\Users\remya\AndroidStudioProjects\android-fitness-application\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
         jumboMode="true"
         revision="24.0.2"
-        sha1="ee5bc4361d4da4dfd3d78b7d145fe0a90eee44f4">
+        sha1="5ceb218c1fe2b01dceab817aba541e0c08bf6513">
         <dex dex="C:\Users\remya\AndroidStudioProjects\android-fitness-application\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_2f93a0a94925d091a96955e27333d8648566baa5\classes.dex" />
-    </item>
-    <item
-        jar="C:\Users\remya\AndroidStudioProjects\android-fitness-application\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
-        revision="24.0.2"
-        sha1="aecd52898ed2a8e7e965f68abb40516892b6a8ab">
-        <dex dex="C:\Users\remya\AndroidStudioProjects\android-fitness-application\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_512a1f0484553ec07a474d82d9a5d6b8c6de4fd2\classes.dex" />
     </item>
 
 </items>

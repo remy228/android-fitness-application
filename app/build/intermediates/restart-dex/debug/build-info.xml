@@ -4,30 +4,35 @@
     api-level="23"
     density="xxhdpi"
     format="7"
-    timestamp="11434581832960"
+    timestamp="13795132287146"
     token="-868333249239830533" >
 
     <task
         name="javac"
-        duration="1863" />
+        duration="0" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="426" />
+        duration="0" />
     <task
         name="verifier"
-        duration="244" />
+        duration="0" />
 
     <artifact
-        location="C:\Users\remya\AndroidStudioProjects\android-fitness-application\app\build\outputs\apk\app-debug.apk"
-        type="MAIN" />
+        location="C:\Users\remya\AndroidStudioProjects\android-fitness-application\app\build\intermediates\res\resources-debug.ap_"
+        type="RESOURCES" />
 
-    <build timestamp="11434581832960" >
+    <build timestamp="13693446611200" >
         <artifact
             location="C:\Users\remya\AndroidStudioProjects\android-fitness-application\app\build\outputs\apk\app-debug.apk"
             type="MAIN" />
+    </build>
+    <build timestamp="13795132287146" >
+        <artifact
+            location="C:\Users\remya\AndroidStudioProjects\android-fitness-application\app\build\intermediates\res\resources-debug.ap_"
+            type="RESOURCES" />
     </build>
 
 </instant-run>

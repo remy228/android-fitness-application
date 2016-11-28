@@ -142,13 +142,11 @@
 		android:layout_above="@+id/buttons"
 		android:layout_alignRight="@+id/buttons">
 
-      <!--  <fragment
+        <fragment
             android:id="@+id/map"
-            class="com.google.android.gms.maps.MapFragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context="com.jwetherell.pedometer.activity.MapsActivity"
-           />-->
+            android:layout_width="fill_parent"
+            android:layout_height="380dp"
+			class="com.google.android.gms.maps.MapFragment" />
 
 	</RelativeLayout>
 
