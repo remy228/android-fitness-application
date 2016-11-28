@@ -1,12 +1,2 @@
-CHANGED,C:\Users\remya\AndroidStudioProjects\android-fitness-application\app\build\intermediates\transforms\instantRun\debug\folders\4000\5\enhanced\com\jwetherell\pedometer\activity\Demo$9$override.class
-CHANGED,C:\Users\remya\AndroidStudioProjects\android-fitness-application\app\build\intermediates\transforms\instantRun\debug\folders\4000\5\enhanced\com\jwetherell\pedometer\activity\Demo$3$override.class
-CHANGED,C:\Users\remya\AndroidStudioProjects\android-fitness-application\app\build\intermediates\transforms\instantRun\debug\folders\4000\5\enhanced\com\jwetherell\pedometer\activity\Demo$4$override.class
 CHANGED,C:\Users\remya\AndroidStudioProjects\android-fitness-application\app\build\intermediates\transforms\instantRun\debug\folders\4000\5\enhanced\com\jwetherell\pedometer\activity\Demo$override.class
-CHANGED,C:\Users\remya\AndroidStudioProjects\android-fitness-application\app\build\intermediates\transforms\instantRun\debug\folders\4000\5\enhanced\com\jwetherell\pedometer\activity\Demo$2$override.class
-CHANGED,C:\Users\remya\AndroidStudioProjects\android-fitness-application\app\build\intermediates\transforms\instantRun\debug\folders\4000\5\enhanced\com\jwetherell\pedometer\activity\Demo$1$override.class
 CHANGED,C:\Users\remya\AndroidStudioProjects\android-fitness-application\app\build\intermediates\transforms\instantRun\debug\folders\4000\5\enhanced\com\android\tools\fd\runtime\AppPatchesLoaderImpl.class
-CHANGED,C:\Users\remya\AndroidStudioProjects\android-fitness-application\app\build\intermediates\transforms\instantRun\debug\folders\4000\5\enhanced\com\jwetherell\pedometer\activity\Demo$6$override.class
-CHANGED,C:\Users\remya\AndroidStudioProjects\android-fitness-application\app\build\intermediates\transforms\instantRun\debug\folders\4000\5\enhanced\com\jwetherell\pedometer\activity\Demo$5$override.class
-CHANGED,C:\Users\remya\AndroidStudioProjects\android-fitness-application\app\build\intermediates\transforms\instantRun\debug\folders\4000\5\enhanced\com\jwetherell\pedometer\activity\Demo$2$1$override.class
-CHANGED,C:\Users\remya\AndroidStudioProjects\android-fitness-application\app\build\intermediates\transforms\instantRun\debug\folders\4000\5\enhanced\com\jwetherell\pedometer\activity\Demo$7$override.class
-CHANGED,C:\Users\remya\AndroidStudioProjects\android-fitness-application\app\build\intermediates\transforms\instantRun\debug\folders\4000\5\enhanced\com\jwetherell\pedometer\activity\Demo$8$override.class
