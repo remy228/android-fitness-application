@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.LineChart;
@@ -37,15 +38,21 @@ import java.util.GregorianCalendar;
  */
 public class LandscapeFragment extends android.app.Fragment {
 
- //   Intent recieveIntent = getActivity().getIntent();
+    //   Intent recieveIntent = getActivity().getIntent();
+
+    TextView AvgSpeed;
+    TextView MinSpeed;
+    TextView MaxSpeed;
+    double maxspeed;
+    double minspeed=200;
+    double maxdist=0.001;
+    double mindist=0.001;
 
     private LineChart mChart;
 
     public LandscapeFragment() {
         // Required empty public constructor
     }
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,13 +62,16 @@ public class LandscapeFragment extends android.app.Fragment {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         View view = inflater.inflate(R.layout.fragment_landscape, container, false);
         mChart = (LineChart) view.findViewById(R.id.lineChart);
- //       mChart.setOnChartValueSelectedListener(this);
+        //       mChart.setOnChartValueSelectedListener(this);
+        AvgSpeed = (TextView) view.findViewById(R.id.textView22);
+        MaxSpeed = (TextView) view.findViewById(R.id.textView29);
+        MinSpeed = (TextView) view.findViewById(R.id.textView32);
 
-      //  mChart.setDescription();
+        //  mChart.setDescription();
         mChart.setNoDataText("No data for now");
 
         // enable description text
-       mChart.getDescription().setEnabled(true);
+        mChart.getDescription().setEnabled(true);
 
         // enable touch gestures
         mChart.setTouchEnabled(true);
@@ -96,14 +106,14 @@ public class LandscapeFragment extends android.app.Fragment {
         l.setTextColor(Color.WHITE);
 
         XAxis xl = mChart.getXAxis();
-       // xl.setTypeface(mTfLight);
+        // xl.setTypeface(mTfLight);
         xl.setTextColor(Color.WHITE);
         xl.setDrawGridLines(false);
         xl.setAvoidFirstLastClipping(true);
         xl.setEnabled(true);
 
         YAxis leftAxis = mChart.getAxisLeft();
-       // leftAxis.setTypeface(mTfLight);
+        // leftAxis.setTypeface(mTfLight);
         leftAxis.setTextColor(Color.WHITE);
         leftAxis.setAxisMaximum(100f);
         leftAxis.setAxisMinimum(0f);
@@ -111,7 +121,9 @@ public class LandscapeFragment extends android.app.Fragment {
 
         YAxis rightAxis = mChart.getAxisRight();
         rightAxis.setEnabled(false);
-     //  feedMultiple();
+        //  feedMultiple();
+        updateSpeed();
+        s.start();
         return view;
 
     }
@@ -125,10 +137,9 @@ public class LandscapeFragment extends android.app.Fragment {
             @Override
             public void run() {
                 addEntry();
-             //   updateSpeed();
+                //   updateSpeed();
             }
         };
-
 
 
         thread = new Thread(new Runnable() {
@@ -144,7 +155,7 @@ public class LandscapeFragment extends android.app.Fragment {
                     getActivity().runOnUiThread(runnable);
 
                     try {
-                        Thread.sleep(300);
+                        Thread.sleep(3000);
                     } catch (InterruptedException e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
@@ -168,7 +179,7 @@ public class LandscapeFragment extends android.app.Fragment {
 
     private void updateSpeed() {
 
-     //   com.jwetherell.pedometer.activity.Demo.storeData();
+        //   com.jwetherell.pedometer.activity.Demo.storeData();
         /*recieveIntent = new Intent(getActivity().getApplicationContext(), Demo.class);
         Bundle extras = getActivity().getIntent().getExtras();
         if (extras != null) {
@@ -178,7 +189,56 @@ public class LandscapeFragment extends android.app.Fragment {
             System.out.println("Intent test for real time chart: " + steps + " " + distance + " " + calories);
 
         }*/
+
+        double dist_current = Demo.dist;
+
+
+        if (dist_current > maxspeed) {
+            maxdist = dist_current;
+        }
+
+        if (dist_current < minspeed) {
+            mindist = dist_current;
+        }
+
+        double avgdist = (maxdist + mindist) / 2;
+
+        double avgspeed=1/avgdist;
+        double maxspeed = 1/maxdist;
+        double minspeed =1/mindist;
+
+        String avg = String.format("%.2f", avgspeed);
+        String max = String.format("%.2f", maxspeed);
+        String min = String.format("%.2f", minspeed);
+
+        AvgSpeed.setText(String.valueOf(avg));
+        MaxSpeed.setText(String.valueOf(max));
+        MinSpeed.setText(String.valueOf(min));
+
     }
+
+    final Thread s = new Thread() {
+
+        @Override
+        public void run() {
+            try {
+                while (!isInterrupted()) {
+                    Thread.sleep(60000);
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            updateSpeed();
+
+
+                        }
+                    });
+                }
+            } catch (InterruptedException e) {
+            }
+        }
+    };
+
 
     private void addEntry() {
 
@@ -215,8 +275,7 @@ public class LandscapeFragment extends android.app.Fragment {
     }
 
     //Retrieving data for Calories and Steps every 5 minutes
-    private void getData()
-    {
+    private void getData() {
 
     }
 
@@ -247,21 +306,6 @@ public class LandscapeFragment extends android.app.Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-     /*  switch (item.getItemId()) {
-            case R.id.actionAdd: {
-                addEntry();
-                break;
-            }
-            case R.id.actionClear: {
-                mChart.clearValues();
-                Toast.makeText(getActivity(), "Chart cleared!", Toast.LENGTH_SHORT).show();
-                break;
-            }
-            case R.id.actionFeedMultiple: {
-                feedMultiple();
-                break;
-            }
-        }*/
         return true;
     }
 

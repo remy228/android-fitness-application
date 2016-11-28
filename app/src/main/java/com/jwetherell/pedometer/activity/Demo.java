@@ -87,6 +87,7 @@ public class Demo extends FragmentActivity implements OnMapReadyCallback, Google
     Intent recieveIntent = getIntent();
     static TextView distance;
     static TextView duration;
+    static double dist;
 
 
     MyDBHandler myDBHandler;
@@ -244,8 +245,9 @@ public class Demo extends FragmentActivity implements OnMapReadyCallback, Google
 
 
     // Function to update the distance covered in Realtime
+
     private static void updatedistance() {
-        double dist;
+
         String a;
         if (get_gender == "Female") {
 
@@ -506,7 +508,7 @@ public class Demo extends FragmentActivity implements OnMapReadyCallback, Google
     }
 
     int Cal_burnt;
-    float distance_covered;
+    static float distance_covered;
     public void storeData() {
 
         float Cal_per_km = (float) (get_weight * 0.3125);
@@ -521,7 +523,7 @@ public class Demo extends FragmentActivity implements OnMapReadyCallback, Google
             System.out.println("Calories burnt:" + Cal_burnt);
             // 1 step = 1/1491 km
             distance_covered = (float) (0.00067 * Steps);
-            System.out.println("Distance covered: " + distance);
+            System.out.println("Distance covered: " + distance_covered);
         } else {
             double X = Cal_per_km / 1312;
             System.out.println("Calories per step:" + X);
@@ -529,7 +531,7 @@ public class Demo extends FragmentActivity implements OnMapReadyCallback, Google
             System.out.println("Calories burnt:" + Cal_burnt);
             // 1 step = 1/1312.4 km
             distance_covered = (float) (0.00076 * Steps);
-            System.out.println("Distance covered: " + distance);
+            System.out.println("Distance covered: " + distance_covered);
         }
         myDBHandler = new MyDBHandler(getApplicationContext());
         sqLiteDatabase = myDBHandler.getWritableDatabase();
@@ -579,7 +581,7 @@ public class Demo extends FragmentActivity implements OnMapReadyCallback, Google
             markerOptions.title("Current Position");
             markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
             currLocationMarker = mGoogleMap.addMarker(markerOptions);
-            mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
+            mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 17));
         }
 
         mLocationRequest = new LocationRequest();
