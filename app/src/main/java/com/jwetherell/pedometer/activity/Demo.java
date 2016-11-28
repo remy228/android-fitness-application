@@ -1,15 +1,17 @@
 package com.jwetherell.pedometer.activity;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.logging.Logger;
+
+import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.jwetherell.pedometer.service.IStepService;
 import com.jwetherell.pedometer.service.IStepServiceCallback;
-import com.jwetherell.pedometer.service.StepDetector;
 import com.jwetherell.pedometer.service.StepService;
 import com.jwetherell.pedometer.utilities.MessageUtilities;
 import com.jwetherell.pedometer.R;
@@ -30,21 +32,18 @@ import android.os.Message;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.os.RemoteException;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
-import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.CompoundButton.OnCheckedChangeListener;
-import com.jwetherell.pedometer.activity.UserProfile;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.MapsInitializer;
 
 
 /**
@@ -53,7 +52,7 @@ import android.support.v4.app.FragmentActivity;
  * 
  * @author Justin Wetherell <phishman3579@gmail.com>
  */
-public class Demo extends Activity{
+public class Demo extends FragmentActivity implements OnMapReadyCallback{
 
     private static final Logger logger = Logger.getLogger(Demo.class.getSimpleName());
 
@@ -81,6 +80,8 @@ public class Demo extends Activity{
 
     MyDBHandler myDBHandler;
     SQLiteDatabase sqLiteDatabase;
+
+    GoogleMap mMap;
 
 
 
@@ -117,14 +118,8 @@ public class Demo extends Activity{
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-       /* getSupportFragmentManager().beginTransaction()
-                .replace(R.id.mapLayout, ma)
-                .commit();*/
-        //fragmentTransaction.replace(R.id.mapLayout,ma).commit();
-      //  fragmentTransaction.commit();
-
         if (config.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            LandscapeFragment landscapeFragment = new LandscapeFragment();
+           LandscapeFragment landscapeFragment = new LandscapeFragment();
            fragmentTransaction.replace(android.R.id.content, landscapeFragment);
 
         } else {
@@ -174,7 +169,17 @@ public class Demo extends Activity{
             System.out.println("Intent test failed");
         }
 
+     //Maps Stuff
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
 
+
+    }
+
+    private boolean initMap() {
+
+        return false;
     }
 
     int hr= 0;
@@ -509,14 +514,17 @@ public class Demo extends Activity{
         myDBHandler = new MyDBHandler(getApplicationContext());
         sqLiteDatabase = myDBHandler.getWritableDatabase();
         myDBHandler.addWorkoutDetails(get_name,Steps,distance_covered,Cal_burnt, sqLiteDatabase);
-        /*Intent chartIntent = new Intent(this, LandscapeFragment.class);
-        Log.i("Chart Data: ", "Testing!");
-        chartIntent.putExtra("Steps", Steps);
-        chartIntent.putExtra("Distance", distance_covered);
-        chartIntent.putExtra("Calories", Cal_burnt);
-        startActivity(chartIntent);*/
 
 
     }
 
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+
+        // Add a marker in Sydney and move the camera
+        LatLng sydney = new LatLng(-34, 151);
+        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+    }
 }

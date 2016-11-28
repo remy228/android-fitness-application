@@ -146,7 +146,7 @@
             android:id="@+id/map"
             android:layout_width="fill_parent"
             android:layout_height="380dp"
-			class="com.google.android.gms.maps.MapFragment" />
+			class="com.google.android.gms.maps.SupportMapFragment" />
 
 	</RelativeLayout>
 
