@@ -30,10 +30,6 @@ import android.os.Message;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.os.RemoteException;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.AppCompatActivity;
-import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -47,8 +43,6 @@ import android.widget.ToggleButton;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import com.jwetherell.pedometer.activity.UserProfile;
-import android.support.v4.app.Fragment;
-
 
 
 /**
@@ -120,7 +114,7 @@ public class Demo extends Activity{
         Configuration config = getResources().getConfiguration();
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        MapsActivity ma = new MapsActivity();
+
        /* getSupportFragmentManager().beginTransaction()
                 .replace(R.id.mapLayout, ma)
                 .commit();*/
