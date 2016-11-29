@@ -1,6 +1,4 @@
 package com.jwetherell.pedometer.activity;
-
-
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -43,10 +41,13 @@ public class LandscapeFragment extends android.app.Fragment {
     TextView AvgSpeed;
     TextView MinSpeed;
     TextView MaxSpeed;
-    double maxspeed;
-    double minspeed=200;
-    double maxdist=0.001;
-    double mindist=0.001;
+    double maxdist=0;
+    double mindist=0;
+    double avgspeed=0;
+    int prev_steps=0;
+    int prev_cal=0;
+
+    private Thread thread;
 
     private LineChart mChart;
 
@@ -69,6 +70,7 @@ public class LandscapeFragment extends android.app.Fragment {
 
         //  mChart.setDescription();
         mChart.setNoDataText("No data for now");
+
 
         // enable description text
         mChart.getDescription().setEnabled(true);
@@ -115,7 +117,7 @@ public class LandscapeFragment extends android.app.Fragment {
         YAxis leftAxis = mChart.getAxisLeft();
         // leftAxis.setTypeface(mTfLight);
         leftAxis.setTextColor(Color.WHITE);
-        leftAxis.setAxisMaximum(100f);
+        leftAxis.setAxisMaximum(30f);
         leftAxis.setAxisMinimum(0f);
         leftAxis.setDrawGridLines(true);
 
@@ -123,7 +125,7 @@ public class LandscapeFragment extends android.app.Fragment {
         rightAxis.setEnabled(false);
         //  feedMultiple();
         updateSpeed();
-        s.start();
+      //  s.start();
         return view;
 
     }
@@ -137,7 +139,7 @@ public class LandscapeFragment extends android.app.Fragment {
             @Override
             public void run() {
                 addEntry();
-                //   updateSpeed();
+                updateSpeed();
             }
         };
 
@@ -155,7 +157,7 @@ public class LandscapeFragment extends android.app.Fragment {
                     getActivity().runOnUiThread(runnable);
 
                     try {
-                        Thread.sleep(3000);
+                        Thread.sleep(5000);
                     } catch (InterruptedException e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
@@ -177,39 +179,46 @@ public class LandscapeFragment extends android.app.Fragment {
         }
     }
 
+    double prev_dist=0;
+    double current;
+    //Function to update the Average, Min and Max speed values every 5 seconds
     private void updateSpeed() {
 
-        //   com.jwetherell.pedometer.activity.Demo.storeData();
-        /*recieveIntent = new Intent(getActivity().getApplicationContext(), Demo.class);
-        Bundle extras = getActivity().getIntent().getExtras();
-        if (extras != null) {
-            int steps = extras.getInt("Steps");
-            double distance = extras.getDouble("Distance");
-            int calories = extras.getInt("Calories");
-            System.out.println("Intent test for real time chart: " + steps + " " + distance + " " + calories);
-
-        }*/
-
         double dist_current = Demo.dist;
+        current = dist_current-prev_dist;
+        prev_dist=dist_current;
+        double maxspeed=0;
+        double minspeed=0;
 
 
-        if (dist_current > maxspeed) {
-            maxdist = dist_current;
+
+        if (current > maxdist) {
+            maxdist = current;
+
         }
 
-        if (dist_current < minspeed) {
-            mindist = dist_current;
+        if (maxdist>mindist) {
+            mindist = prev_dist;
         }
 
-        double avgdist = (maxdist + mindist) / 2;
+        //Dividing 1/Distance covered in 1 minute.
 
-        double avgspeed=1/avgdist;
-        double maxspeed = 1/maxdist;
-        double minspeed =1/mindist;
+        if(maxdist!=0) {
+            maxspeed = 1 / maxdist;
+        }
+        double old_speed = maxspeed;
+        if(mindist!=0) {
+             minspeed = 1 / mindist;
 
-        String avg = String.format("%.2f", avgspeed);
-        String max = String.format("%.2f", maxspeed);
-        String min = String.format("%.2f", minspeed);
+            if(old_speed>minspeed)
+                minspeed=old_speed;
+                    }
+
+        avgspeed=(maxspeed+minspeed)/2;
+
+        String avg = String.format("%.1f", avgspeed);
+        String max = String.format("%.1f", maxspeed);
+        String min = String.format("%.1f", minspeed);
 
         AvgSpeed.setText(String.valueOf(avg));
         MaxSpeed.setText(String.valueOf(max));
@@ -217,18 +226,19 @@ public class LandscapeFragment extends android.app.Fragment {
 
     }
 
-    final Thread s = new Thread() {
+//
+   /*final Thread s = new Thread() {
 
         @Override
         public void run() {
             try {
                 while (!isInterrupted()) {
-                    Thread.sleep(60000);
+                    Thread.sleep(5000);
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
 
-                            updateSpeed();
+
 
 
                         }
@@ -238,7 +248,7 @@ public class LandscapeFragment extends android.app.Fragment {
             }
         }
     };
-
+*/
 
     private void addEntry() {
 
@@ -247,6 +257,7 @@ public class LandscapeFragment extends android.app.Fragment {
         if (data != null) {
 
             ILineDataSet set = data.getDataSetByIndex(0);
+            ILineDataSet set1 = data.getDataSetByIndex(1);
             // set.addEntry(...); // can be called as well
 
             if (set == null) {
@@ -254,7 +265,25 @@ public class LandscapeFragment extends android.app.Fragment {
                 data.addDataSet(set);
             }
 
-            data.addEntry(new Entry(set.getEntryCount(), (float) (Math.random() * 40) + 30f), 0);
+            if (set1 == null) {
+                set1 = createSet1();
+                data.addDataSet(set1);
+            }
+
+
+        //   data.addEntry(new Entry(set.getEntryCount(), (float) (Math.random() * 40) + 30f), 0);
+             int steps = Demo.Steps;
+             int curr = steps-prev_steps;
+             prev_steps=steps;
+
+            int cal = Demo.calories_burnt;
+            int curr_cal = cal-prev_cal;
+            prev_cal = cal;
+
+                data.addEntry(new Entry(set.getEntryCount(),curr), 0);
+                data.addEntry(new Entry(set1.getEntryCount(), curr_cal), 1);
+
+
             data.notifyDataChanged();
 
             // let the chart know it's data has changed
@@ -274,28 +303,41 @@ public class LandscapeFragment extends android.app.Fragment {
 
     }
 
-    //Retrieving data for Calories and Steps every 5 minutes
-    private void getData() {
-
-    }
 
     private LineDataSet createSet() {
 
-        LineDataSet set = new LineDataSet(null, "Dynamic Data");
+        LineDataSet set = new LineDataSet(null, "Steps");
         set.setAxisDependency(YAxis.AxisDependency.LEFT);
         set.setColor(ColorTemplate.getHoloBlue());
         set.setCircleColor(Color.WHITE);
-        set.setLineWidth(2f);
+        set.setLineWidth(4f);
         set.setCircleRadius(4f);
         set.setFillAlpha(65);
-        set.setFillColor(ColorTemplate.getHoloBlue());
+        set.setFillColor(32);
         set.setHighLightColor(Color.rgb(244, 117, 117));
         set.setValueTextColor(Color.WHITE);
         set.setValueTextSize(9f);
         set.setDrawValues(false);
         return set;
+
     }
 
+    private LineDataSet createSet1() {
+
+        LineDataSet set1 = new LineDataSet(null, "Calories");
+        set1.setAxisDependency(YAxis.AxisDependency.LEFT);
+        set1.setColor(Color.MAGENTA);
+        set1.setCircleColor(Color.GREEN);
+        set1.setLineWidth(4f);
+        set1.setCircleRadius(4f);
+      //set1.setFillAlpha(35);
+        set1.setFillColor(ColorTemplate.getHoloBlue());
+        set1.setHighLightColor(Color.rgb(244, 117, 117));
+        set1.setValueTextColor(Color.WHITE);
+        set1.setValueTextSize(9f);
+        set1.setDrawValues(false);
+        return set1;
+    }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -308,31 +350,5 @@ public class LandscapeFragment extends android.app.Fragment {
 
         return true;
     }
-
-
-    private Thread thread;
-
-  /* private void feedMultiple() {
-
-        if (thread != null)
-            thread.interrupt();
-
-
-
-    }
-
-    @Override
-    public void onValueSelected(Entry e, Highlight h)
-        {
-            Log.i("Entry selected", e.toString());
-        }
-
-
-    @Override
-    public void onNothingSelected()  {
-        Log.i("Nothing selected", "Nothing selected.");
-        feedMultiple();
-    }*/
-
 
 }

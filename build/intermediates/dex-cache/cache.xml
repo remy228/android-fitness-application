@@ -1,3 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
 
+    <item
+        jar="C:\Users\remya\.gradle\caches\modules-2\files-2.1\com.github.PhilJay\MPAndroidChart\v3.0.1\369f9aa48a629b4e92557b37326f42dc3de796e4\MPAndroidChart-v3.0.1.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="369f9aa48a629b4e92557b37326f42dc3de796e4">
+        <dex dex="C:\Users\remya\AndroidStudioProjects\android-fitness-application\app\build\intermediates\transforms\dex\debug\folders\1000\10\MPAndroidChart-v3.0.1_b39e5ba896b3a60fc92db689b0a51af06b1e9acc\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\remya\AndroidStudioProjects\android-fitness-application\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.0\jars\classes.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="686344a780033e4ba22b926cd225f8d4941247e6">
+        <dex dex="C:\Users\remya\AndroidStudioProjects\android-fitness-application\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-21.0.0_579a71b605a8bc97558c577e13a867e8f194261f\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\remya\AndroidStudioProjects\android-fitness-application\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.0\jars\libs\internal_impl-21.0.0.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="1609e6d42d0480b0f4188e2c29f75388fa12a8f0">
+        <dex dex="C:\Users\remya\AndroidStudioProjects\android-fitness-application\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-21.0.0_647064f4de2b8c5633009162172bffd1b5ade88f\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\remya\AndroidStudioProjects\android-fitness-application\app\build\intermediates\exploded-aar\com.google.android.gms\play-services\6.5.87\jars\classes.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="dd9247ea0fabe8ee479638c4b4a23e93752be256">
+        <dex dex="C:\Users\remya\AndroidStudioProjects\android-fitness-application\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-6.5.87_0ce01d7f803bc371893c0bc5587e08285a275366\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\remya\android-sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.0\support-annotations-21.0.0.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="1a578b9607b36266c63d43a4fa0ab5664dbe911e">
+        <dex dex="C:\Users\remya\AndroidStudioProjects\android-fitness-application\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-21.0.0_05af25d1af7e68dbe56822cbd134f5f3df1da15c\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\remya\AndroidStudioProjects\android-fitness-application\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="40381ba38c07f3198d318136c994cb5c4e7d3c67">
+        <dex dex="C:\Users\remya\AndroidStudioProjects\android-fitness-application\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_2f93a0a94925d091a96955e27333d8648566baa5\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\remya\AndroidStudioProjects\android-fitness-application\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="5cc9d62639599544dc3f7285e4b9abe026cced74">
+        <dex dex="C:\Users\remya\AndroidStudioProjects\android-fitness-application\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_512a1f0484553ec07a474d82d9a5d6b8c6de4fd2\classes.dex" />
+    </item>
+
+</items>

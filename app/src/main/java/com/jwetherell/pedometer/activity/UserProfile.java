@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.app.Activity;
+import android.text.Editable;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -74,13 +75,31 @@ public class UserProfile extends Activity {
             ArrayAdapter myAdap = (ArrayAdapter) Gender.getAdapter(); //cast to an ArrayAdapter
             int spinnerPosition = myAdap.getPosition(gender);
             Gender.setSelection(spinnerPosition);
+
+
            /* if(name!=null) {
                 myDBHandler = new MyDBHandler(getApplicationContext());
                 sqLiteDatabase = myDBHandler.getWritableDatabase();
 
             }*/
-        }
 
+          //  updateData(name, sqLiteDatabase);
+        }
+        Editable name_get = Name.getText();
+        String name_retrieve = name_get.toString();
+        try {
+            if (name_get != null) {
+
+                myDBHandler = new MyDBHandler(getApplicationContext());
+                sqLiteDatabase = myDBHandler.getReadableDatabase();
+                System.out.println("Name currently placed: " + name_retrieve);
+                updateData(name_retrieve, sqLiteDatabase);
+                System.out.println("Testing");
+            }
+        }catch(NullPointerException e)
+        {
+
+        }
 
         Save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -130,9 +149,9 @@ public class UserProfile extends Activity {
                     startActivity(intent);
 
                     isTableExists(get_name, true);
-                    updateData(get_name, sqLiteDatabase);
-                }
 
+                }
+                updateData(get_name, sqLiteDatabase);
             }
         });
 
@@ -175,8 +194,10 @@ public class UserProfile extends Activity {
     }
 
     //Update the values in UserProfile
-    public static void updateData(String table_name, SQLiteDatabase db) {
+    public void updateData(String table_name, SQLiteDatabase db) {
 
+        if((table_name != null && !table_name.isEmpty()))
+        {
         Cursor cur = db.rawQuery("SELECT SUM(Distance_in_km) FROM " + table_name, null);
         if (cur.moveToFirst()) {
             System.out.println("Total Distance as retrieved:" + cur.getDouble(0));
@@ -220,7 +241,30 @@ public class UserProfile extends Activity {
         AllTime.setText(day + " day " + hours + " hour " + minute + " min " + second + " sec");
         AllWorkouts.setText(worktime + " times");
         AllCalories.setText(cal + " Cal");
+        System.out.println("Works!!");
 
+        if(worktime!=0) {
+            double avgdist = cur.getDouble(0) / worktime;
+            String avg_dist = String.format("%.2f", avgdist);
+            int avgcal = cur3.getInt(0) / worktime;
+
+
+            AvgDist.setText(avg_dist + " km");
+            AvgTime.setText(day + " day " + hours + " hour " + minute + " min " + second + " sec");
+            AvgWorkouts.setText(worktime + " times");
+            AvgCalories.setText(avgcal + " Cal");
+            System.out.println("Works!!");
+        }
+
+       /* dataintent = new Intent(UserProfile.this, Demo.class);
+        Log.i("User Profile: ", "Testing activity 2");
+        dataintent.putExtra("distance", dist);
+        dataintent.putExtra("day", day);
+        dataintent.putExtra("worktime", worktime);
+        dataintent.putExtra("cal", cal);
+        startActivity(dataintent);
+*/
+        }
     }
 
 

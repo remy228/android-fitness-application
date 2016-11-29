@@ -88,6 +88,7 @@ public class Demo extends FragmentActivity implements OnMapReadyCallback, Google
     static TextView distance;
     static TextView duration;
     static double dist;
+    static int calories_burnt;
 
 
     MyDBHandler myDBHandler;
@@ -123,6 +124,7 @@ public class Demo extends FragmentActivity implements OnMapReadyCallback, Google
         duration = (TextView)findViewById(R.id.textView19);
         powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
         wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "Demo");
+
 
         if (stepServiceIntent == null) {
             Bundle extras = new Bundle();
@@ -248,20 +250,26 @@ public class Demo extends FragmentActivity implements OnMapReadyCallback, Google
 
     private static void updatedistance() {
 
+        float Cal_per_km = (float) (get_weight * 0.3125);
+
         String a;
+        double X;
         if (get_gender == "Female") {
 
             // 1 step = 1/1491 km
             dist = 0.00067 * Steps;
+            X = Cal_per_km / 1312;
             a = String.format("%.2f", dist);
 
         } else {
             // 1 step = 1/1312.4 km
             dist = 0.00076 * Steps;
+             X = Cal_per_km / 1491;
             a = String.format("%.2f", dist);
          }
-
+       calories_burnt=  (int) (Steps * X);
        distance.setText(String.valueOf(a));
+
     }
 
 
@@ -559,7 +567,7 @@ public class Demo extends FragmentActivity implements OnMapReadyCallback, Google
     }
 
     protected synchronized void buildGoogleApiClient() {
-        Toast.makeText(this,"buildGoogleApiClient",Toast.LENGTH_SHORT).show();
+     //   Toast.makeText(this,"buildGoogleApiClient",Toast.LENGTH_SHORT).show();
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
@@ -569,7 +577,7 @@ public class Demo extends FragmentActivity implements OnMapReadyCallback, Google
 
     @Override
     public void onConnected(Bundle bundle) {
-        Toast.makeText(this, "onConnected", Toast.LENGTH_SHORT).show();
+    //    Toast.makeText(this, "onConnected", Toast.LENGTH_SHORT).show();
         Location mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
                 mGoogleApiClient);
         if (mLastLocation != null) {
@@ -581,7 +589,7 @@ public class Demo extends FragmentActivity implements OnMapReadyCallback, Google
             markerOptions.title("Current Position");
             markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
             currLocationMarker = mGoogleMap.addMarker(markerOptions);
-            mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 17));
+            mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12));
         }
 
         mLocationRequest = new LocationRequest();
@@ -611,7 +619,7 @@ public class Demo extends FragmentActivity implements OnMapReadyCallback, Google
         markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
         currLocationMarker = mGoogleMap.addMarker(markerOptions);
 
-        Toast.makeText(this, "Location Changed", Toast.LENGTH_SHORT).show();
+       // Toast.makeText(this, "Location Changed", Toast.LENGTH_SHORT).show();
 
         //zoom to current position:
         CameraPosition cameraPosition = new CameraPosition.Builder()
